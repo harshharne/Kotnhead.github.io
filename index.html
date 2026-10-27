@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Harshwardhan Harne</title>
+  <meta name="description" content="Harshwardhan Harne — designer who builds. Site under construction.">
+  <script>document.documentElement.classList.add("js");</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Colours: change these to restyle the whole site ---------- */
+    :root {
+      --bg: #1f1f1f;        /* dark grey background */
+      --text: #ebe8e2;      /* lit dots + main text */
+      --tag: #d4d0c8;       /* tagline dots */
+      --muted: #aca89f;     /* status line */
+      --rule: #333331;
+      --accent: #ff5b1f;    /* cursor + status light */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; transition: color .15s; }
+    a:hover { color: var(--accent); }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    @media (max-width: 600px) { .wrap { padding: 0 20px; } }
+
+    /* ---------- Hero ---------- */
+    .hero { position: relative; height: 100vh; height: 100svh; min-height: 420px; overflow: hidden; }
+    #dots { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: pan-y; cursor: crosshair; }
+
+    /* Under-construction note */
+    .status { position: absolute; left: 0; right: 0; bottom: 32px; z-index: 1; font-size: 13px; color: var(--muted); pointer-events: none; }
+    .status .led {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent); margin-right: 10px; vertical-align: 1px;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    [data-align="center"] .status, [data-align="center"] .hero-text { text-align: center; }
+    @keyframes pulse { 50% { opacity: .25; } }
+    @media (prefers-reduced-motion: reduce) { .status .led { animation: none; } }
+
+    /* Text version of the hero: shown only if JavaScript is off; read by screen readers always */
+    .hero-text { position: relative; z-index: 1; padding-top: 24vh; }
+    .hero-text h1 { font-family: "Doto", monospace; font-weight: 900; font-size: clamp(28px, 5vw, 48px); line-height: 1.1; }
+    .hero-text p { margin-top: 16px; color: var(--tag); }
+    .js .hero-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; padding: 0; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <canvas id="dots" aria-hidden="true"></canvas>
+
+    <div class="wrap hero-text">
+      <h1>Harshwardhan Harne</h1>
+      <p>Designer who builds. Part designer, part engineer, part storyteller. Making tech that helps people flourish.</p>
+    </div>
+
+    <div class="status"><div class="wrap"><span class="led"></span>Still wiring things up. Full portfolio coming soon.</div></div>
+  </header>
+
+
+  <script>
+  (() => {
+    /* ================= EDIT THESE ================= */
+    const NAME = "Harshwardhan Harne";
+    const TAGLINES = [
+      "Designer who builds",
+      "Part designer, part engineer, part storyteller",
+      "Making tech that helps people flourish",
+    ];
+    const ALIGN = "center";   // "center" or "left"
+    /* ============================================== */
+
+    // Dot-matrix font: 5 wide x 9 tall (rows 7-8 hold descenders like g, p, y)
+    const F = {
+      A:[" ### ","#   #","#   #","#####","#   #","#   #","#   #"],
+      B:["#### ","#   #","#   #","#### ","#   #","#   #","#### "],
+      C:[" ### ","#   #","#    ","#    ","#    ","#   #"," ### "],
+      D:["#### ","#   #","#   #","#   #","#   #","#   #","#### "],
+      E:["#####","#    ","#    ","#### ","#    ","#    ","#####"],
+      F:["#####","#    ","#    ","#### ","#    ","#    ","#    "],
+      G:[" ### ","#   #","#    ","# ###","#   #","#   #"," ####"],
+      H:["#   #","#   #","#   #","#####","#   #","#   #","#   #"],
+      I:[" ### ","  #  ","  #  ","  #  ","  #  ","  #  "," ### "],
+      J:["  ###","   # ","   # ","   # ","   # ","#  # "," ##  "],
+      K:["#   #","#  # ","# #  ","##   ","# #  ","#  # ","#   #"],
+      L:["#    ","#    ","#    ","#    ","#    ","#    ","#####"],
+      M:["#   #","## ##","# # #","# # #","#   #","#   #","#   #"],
+      N:["#   #","#   #","##  #","# # #","#  ##","#   #","#   #"],
+      O:[" ### ","#   #","#   #","#   #","#   #","#   #"," ### "],
+      P:["#### ","#   #","#   #","#### ","#    ","#    ","#    "],
+      Q:[" ### ","#   #","#   #","#   #","# # #","#  # "," ## #"],
+      R:["#### ","#   #","#   #","#### ","# #  ","#  # ","#   #"],
+      S:[" ####","#    ","#    "," ### ","    #","    #","#### "],
+      T:["#####","  #  ","  #  ","  #  ","  #  ","  #  ","  #  "],
+      U:["#   #","#   #","#   #","#   #","#   #","#   #"," ### "],
+      V:["#   #","#   #","#   #","#   #","#   #"," # # ","  #  "],
+      W:["#   #","#   #","#   #","# # #","# # #","# # #"," # # "],
+      X:["#   #","#   #"," # # ","  #  "," # # ","#   #","#   #"],
+      Y:["#   #","#   #"," # # ","  #  ","  #  ","  #  ","  #  "],
+      Z:["#####","    #","   # ","  #  "," #   ","#    ","#####"],
+      a:["     ","     "," ### ","    #"," ####","#   #"," ####"],
+      b:["#    ","#    ","# ## ","##  #","#   #","#   #","#### "],
+      c:["     ","     "," ### ","#    ","#    ","#   #"," ### "],
+      d:["    #","    #"," ## #","#  ##","#   #","#   #"," ####"],
+      e:["     ","     "," ### ","#   #","#####","#    "," ### "],
+      f:["  ## "," #  #"," #   ","###  "," #   "," #   "," #   "],
+      g:["     ","     "," ####","#   #","#   #","#   #"," ####","    #"," ### "],
+      h:["#    ","#    ","# ## ","##  #","#   #","#   #","#   #"],
+      i:["  #  ","     "," ##  ","  #  ","  #  ","  #  "," ### "],
+      j:["   # ","     ","  ## ","   # ","   # ","   # ","   # ","#  # "," ##  "],
+      k:["#    ","#    ","#  # ","# #  ","##   ","# #  ","#  # "],
+      l:[" ##  ","  #  ","  #  ","  #  ","  #  ","  #  "," ### "],
+      m:["     ","     ","## # ","# # #","# # #","#   #","#   #"],
+      n:["     ","     ","# ## ","##  #","#   #","#   #","#   #"],
+      o:["     ","     "," ### ","#   #","#   #","#   #"," ### "],
+      p:["     ","     ","#### ","#   #","#   #","#   #","#### ","#    ","#    "],
+      q:["     ","     "," ####","#   #","#   #","#   #"," ####","    #","    #"],
+      r:["     ","     ","# ## ","##  #","#    ","#    ","#    "],
+      s:["     ","     "," ####","#    "," ### ","    #","#### "],
+      t:[" #   "," #   ","###  "," #   "," #   "," #  #","  ## "],
+      u:["     ","     ","#   #","#   #","#   #","#  ##"," ## #"],
+      v:["     ","     ","#   #","#   #","#   #"," # # ","  #  "],
+      w:["     ","     ","#   #","#   #","# # #","# # #"," # # "],
+      x:["     ","     ","#   #"," # # ","  #  "," # # ","#   #"],
+      y:["     ","     ","#   #","#   #","#   #","#   #"," ####","    #"," ### "],
+      z:["     ","     ","#####","   # ","  #  "," #   ","#####"],
+      ".":["     ","     ","     ","     ","     "," ##  "," ##  "],
+      ",":["     ","     ","     ","     ","     "," ##  "," ##  ","  #  "," #   "],
+      "-":["     ","     ","     ","#####","     ","     ","     "],
+      "'":["  #  ","  #  ","     ","     ","     ","     ","     "],
+      "+":["     ","  #  ","  #  ","#####","  #  ","  #  ","     "],
+      "&":[" ##  ","#  # ","#  # "," ##  ","# # #","#  # "," ## #"],
+      "/":["    #","    #","   # ","  #  "," #   ","#    ","#    "],
+      " ":["     "],
+    };
+    const GH = 9, LINE = 11;   // glyph height, line height (in dots)
+    const GLYPH = {};
+    for (const k in F) {
+      const pts = [];
+      F[k].forEach((row, r) => { for (let c = 0; c < 5; c++) if (row[c] === "#") pts.push([c, r]); });
+      GLYPH[k] = pts;
+    }
+    const glyph = ch => GLYPH[ch] || GLYPH[ch.toUpperCase()] || GLYPH[ch.toLowerCase()] || GLYPH[" "];
+
+    const canvas = document.getElementById("dots");
+    const ctx = canvas.getContext("2d");
+    document.documentElement.dataset.align = ALIGN;
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const css = getComputedStyle(document.documentElement);
+    const COL_ON  = css.getPropertyValue("--text").trim()   || "#ebe8e2";
+    const COL_TAG = css.getPropertyValue("--tag").trim()    || "#b8b4ac";
+    const COL_ACC = css.getPropertyValue("--accent").trim() || "#ff5b1f";
+
+    const cols = s => s.length * 6 - 1;
+    const DT = 1000 / 60;
+
+    let W = 0, H = 0, np = 6, tp = 3;
+    let namePlace = [], tagPlaces = [], particles = [], letters = [];
+    let returns = [];
+
+    function wrap(text, maxCols) {
+      const lines = []; let cur = "";
+      for (const w of text.split(" ")) {
+        const test = cur ? cur + " " + w : w;
+        if (!cur || cols(test) <= maxCols) cur = test; else { lines.push(cur); cur = w; }
+      }
+      if (cur) lines.push(cur);
+      return lines;
+    }
+
+    // Lay lines of text out on the grid; i = index into the original string
+    function place(lines, left, width, y0, p) {
+      const out = []; let i = 0;
+      lines.forEach((line, li) => {
+        const x0 = ALIGN === "center" ? left + (width - cols(line) * p) / 2 : left;
+        for (let k = 0; k < line.length; k++) out.push({ ch: line[k], x: x0 + k * 6 * p, y: y0 + li * LINE * p, i: i++ });
+        i++; // the space swallowed by the line break
+      });
+      return out;
+    }
+
+    function layout() {
+      const r = canvas.getBoundingClientRect();
+      W = r.width; H = r.height;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      const pad = window.innerWidth <= 600 ? 20 : 40;
+      const left = Math.max(0, (W - 1200) / 2) + pad;
+      const maxW = Math.min(W, 1200) - pad * 2;
+
+      // Name on one line if it fits at a readable size, otherwise one word per line
+      let lines = [NAME], p = maxW / cols(NAME);
+      if (p < 4.5) { lines = NAME.split(" "); p = maxW / Math.max(...lines.map(cols)); }
+      np = Math.min(p, 6.5);              // ← name size (dot spacing in px)
+      tp = Math.max(2.6, np * 0.5);       // ← tagline size
+
+      const tagWrapped = TAGLINES.map(t => wrap(t, Math.floor(maxW / tp)));
+      const tagLinesMax = Math.max(...tagWrapped.map(l => l.length));
+      const nameH = lines.length * LINE * np - (LINE - GH) * np;
+      const gap = Math.max(18, np * 3);
+      const tagH = tagLinesMax * LINE * tp - (LINE - GH) * tp;
+      const top = Math.max(48, (H - (nameH + gap + tagH)) * 0.47);
+
+      namePlace = place(lines, left, maxW, top, np);
+      tagPlaces = tagWrapped.map(l => place(l, left, maxW, top + nameH + gap, tp));
+
+      particles = [];
+      for (const c of namePlace) {
+        for (const [gc, gr] of glyph(c.ch)) {
+          const hx = c.x + gc * np + np / 2, hy = c.y + gr * np + np / 2;
+          particles.push({ hx, hy, x: hx, y: hy, vx: 0, vy: 0, i: c.i, free: false, back: -1 });
+        }
+      }
+      letters = [...new Set(particles.map(p => p.i))];
+      returns = [];
+    }
+
+    // ---------- timeline ----------
+    let phase = reduce ? "static" : "name";
+    let clock = 0, timer = 400, typing = false;
+    let nameN = reduce ? NAME.length : 0;
+    let tagIdx = 0, tagN = reduce ? TAGLINES[0].length : 0;
+    let nextBurst = Infinity;
+
+    // Explode one letter: its dots fly outward, hang, then snap back
+    function burst(i) {
+      const ps = particles.filter(p => p.i === i && !p.free);
+      if (!ps.length) return;
+      let cx = 0, cy = 0;
+      for (const p of ps) { cx += p.hx; cy += p.hy; }
+      cx /= ps.length; cy /= ps.length;
+      for (const p of ps) {
+        const dx = p.hx - cx, dy = p.hy - cy;
+        const a = (Math.abs(dx) + Math.abs(dy) < 0.5 ? Math.random() * 6.28 : Math.atan2(dy, dx)) + (Math.random() - 0.5) * 0.9;
+        const s = np * (1.2 + Math.random() * 2.2);
+        p.vx = Math.cos(a) * s; p.vy = Math.sin(a) * s;
+        p.free = true; p.back = -1;
+      }
+      returns.push({ at: clock + 800 + Math.random() * 400, ps });
+    }
+
+    function step() {
+      clock += DT; timer -= DT;
+      if (timer <= 0) {
+        switch (phase) {
+          case "name":
+            nameN++; typing = true; timer = 70 + Math.random() * 50;
+            if (nameN >= NAME.length) { phase = "pause"; timer = 700; typing = false; nextBurst = clock + 1000; }
+            break;
+          case "pause": phase = "type"; timer = 0; break;
+          case "type":
+            tagN++; typing = true; timer = 35 + Math.random() * 35;
+            if (tagN >= TAGLINES[tagIdx].length) { phase = "hold"; timer = 2800; typing = false; }
+            break;
+          case "hold": phase = "del"; timer = 0; break;
+          case "del":
+            tagN--; typing = true; timer = 16;
+            if (tagN <= 0) { tagN = 0; phase = "gap"; timer = 450; typing = false; }
+            break;
+          case "gap": tagIdx = (tagIdx + 1) % TAGLINES.length; phase = "type"; timer = 0; break;
+        }
+      }
+
+      if (clock > nextBurst && letters.length) {
+        burst(letters[Math.floor(Math.random() * letters.length)]);
+        nextBurst = clock + 3000;   // ← time between explosions (ms)
+      }
+      returns = returns.filter(r => {
+        if (clock < r.at) return true;
+        for (const p of r.ps) p.back = Math.floor(Math.random() * 18);
+        return false;
+      });
+
+      for (const p of particles) {
+        if (p.free) {
+          p.vx *= 0.9; p.vy *= 0.9;          // drag, no gravity: dots hang in the air
+          p.x += p.vx; p.y += p.vy;
+          if (p.back >= 0 && p.back-- === 0) p.free = false;
+        } else {
+          let ax = (p.hx - p.x) * 0.075, ay = (p.hy - p.y) * 0.075;
+          if (pointer.on) {               // dots shy away from the cursor
+            const dx = p.x - pointer.x, dy = p.y - pointer.y, d2 = dx * dx + dy * dy, R = np * 6;
+            if (d2 < R * R && d2 > 0.01) { const d = Math.sqrt(d2), f = (1 - d / R) * 2.2; ax += dx / d * f; ay += dy / d * f; }
+          }
+          p.vx = (p.vx + ax) * 0.8; p.vy = (p.vy + ay) * 0.8;
+          p.x += p.vx; p.y += p.vy;
+        }
+      }
+    }
+
+    // ---------- drawing ----------
+    function dot(x, y, r) { ctx.moveTo(x + r, y); ctx.arc(x, y, r, 0, Math.PI * 2); }
+    function cell(c, p, rows) {
+      const r = p * 0.36;
+      for (let gr = 0; gr < rows; gr++) for (let gc = 0; gc < 5; gc++) dot(c.x + gc * p + p / 2, c.y + gr * p + p / 2, r);
+    }
+    function cursorAt(places, n, p) {
+      if (!places.length) return null;
+      if (n <= 0) return { x: places[0].x, y: places[0].y };
+      let last = places[0];
+      for (const c of places) { if (c.i < n) last = c; else break; }
+      return { x: last.x + 6 * p, y: last.y };
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const tag = tagPlaces[tagIdx] || [];
+
+      ctx.fillStyle = COL_ON; ctx.beginPath();
+      const rN = np * 0.36;
+      for (const p of particles) if (p.i < nameN) dot(p.x, p.y, rN);
+      ctx.fill();
+
+      ctx.fillStyle = COL_TAG; ctx.beginPath();
+      const rT = tp * 0.36;
+      for (const c of tag) {
+        if (c.i >= tagN) continue;
+        for (const [gc, gr] of glyph(c.ch)) dot(c.x + gc * tp + tp / 2, c.y + gr * tp + tp / 2, rT);
+      }
+      ctx.fill();
+
+      if (phase === "static") return;
+      const onName = phase === "name";
+      const cp = onName ? np : tp;
+      const cur = onName ? cursorAt(namePlace, nameN, np) : cursorAt(tag, tagN, tp);
+      if (cur && (typing || clock % 1000 < 560)) {
+        ctx.fillStyle = COL_ACC; ctx.beginPath(); cell(cur, cp, 7); ctx.fill();
+      }
+    }
+
+    // ---------- interaction ----------
+    const pointer = { x: 0, y: 0, on: false };
+    canvas.addEventListener("pointermove", e => {
+      const r = canvas.getBoundingClientRect();
+      pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; pointer.on = true;
+    });
+    canvas.addEventListener("pointerleave", () => { pointer.on = false; });
+    canvas.addEventListener("pointerup", e => { if (e.pointerType !== "mouse") pointer.on = false; });
+
+    // click / tap a letter to explode it
+    canvas.addEventListener("click", e => {
+      if (reduce || phase === "name") return;
+      const r = canvas.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      let best = null, bd = (np * 6) ** 2;
+      for (const p of particles) { const d = (p.hx - x) ** 2 + (p.hy - y) ** 2; if (d < bd) { bd = d; best = p; } }
+      if (best) burst(best.i);
+    });
+
+    // ---------- loop ----------
+    let raf = null, last = 0, acc = 0, visible = true;
+    function loop(now) {
+      if (!visible) { raf = null; return; }
+      acc += Math.min(now - last, 100); last = now;
+      while (acc >= DT) { step(); acc -= DT; }
+      draw();
+      raf = requestAnimationFrame(loop);
+    }
+    function start() { if (!raf && !reduce) { last = performance.now(); raf = requestAnimationFrame(loop); } }
+
+    new ResizeObserver(() => { layout(); draw(); }).observe(canvas);
+    new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) start(); }).observe(canvas);
+    layout(); draw(); start();
+  })();
+  </script>
+</body>
+</html>
