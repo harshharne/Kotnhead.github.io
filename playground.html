@@ -9,40 +9,28 @@
   <meta property="og:description" content="Small games and experiments by Harshwardhan Harne.">
   <meta name="theme-color" content="#1f1f1f">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <script>(()=>{const r=document.documentElement;r.classList.add("js");try{const t=localStorage.getItem("theme");if(t)r.dataset.theme=t;}catch{}})();</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <script>document.documentElement.classList.add("js");</script>
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body data-page="playground">
   <header class="site-header">
     <div class="wrap">
+      <a class="site-name" href="index.html" data-dots="nowrap">Harshwardhan Harne</a>
       <nav aria-label="Main">
         <ul class="nav">
         <li><a href="work.html">Work</a></li>
         <li><a href="notes.html">Notes</a></li>
-        <li><a href="about.html">About</a></li>
         <li><a href="playground.html" aria-current="page">Playground</a></li>
         <li><a href="resume.html">Resume</a></li>
+        <li><a href="about.html">About</a></li>
         </ul>
       </nav>
-      <div class="head-right">
-        <a class="site-name" href="index.html">Harshwardhan Harne</a>
-        <button class="bulb" type="button" aria-pressed="false" aria-label="Switch to day mode">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path class="glow" d="M12 3.2a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.4 1.1 2.2h5c0-.8.4-1.6 1.1-2.2A6 6 0 0 0 12 3.2z"/>
-            <path class="glass" d="M12 3.2a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.4 1.1 2.2h5c0-.8.4-1.6 1.1-2.2A6 6 0 0 0 12 3.2z"/>
-            <path class="base" d="M9.6 18.6h4.8M10.4 21h3.2"/>
-          </svg>
-        </button>
-      </div>
     </div>
   </header>
 
   <main class="wrap">
-    <h1 class="page-title">Playground</h1>
-    <p class="lead" style="margin-top:var(--s5)">Small games and experiments. The name on the home page plays a different one every time you reload.</p>
+    <h1 class="page-title" data-dots>Playground</h1>
+    <p class="lead" style="margin-top:var(--s5)">Small games and experiments built from the dot-matrix name.</p>
     <ul class="play-list">
       <li><a href="index.html?game=still">
         <span class="t">Stay still</span>
@@ -79,7 +67,6 @@
     </div>
   </footer>
 
-  <script src="assets/js/theme.js"></script>
   <script src="assets/js/dotfont.js"></script>
   <script src="assets/js/content.js"></script>
   <script src="assets/js/site.js"></script>

@@ -1,7 +1,9 @@
 /* =====================================================================
-   Landing page: the dot-matrix name + taglines, and four small games.
-   One game is picked at random on every reload (never the same twice
-   in a row). Force one with ?game=still | chain | odds | rebuild
+   Landing page: the dot-matrix name + taglines.
+   By default a random letter explodes every few seconds (click one to
+   pop it yourself). Four games are built in but switched off: set
+   PLAY_GAMES to true to pick one at random on every reload.
+   Any game can still be opened with ?game=still | chain | odds | rebuild
    Needs dotfont.js first.
    ===================================================================== */
 (() => {
@@ -12,6 +14,8 @@
     "Part designer, part engineer, part storyteller",
     "Making tech that helps people flourish",
   ];
+  const PLAY_GAMES = false;      // true = a random game on every reload
+  const EXPLODE_EVERY = 3000;    // ms between letter explosions when games are off
   /* ============================================== */
 
   const { glyph, cols, wrap, GH, LINE } = window.DotFont;
@@ -160,6 +164,19 @@
   let tagOn = true;       // games can hold the taglines back until they're won
 
   const games = {
+
+    /* ---- 0. No game: a random letter explodes every few seconds ---- */
+    calm: {
+      drag: 0.9, k: 0.075, repel: true,
+      start() { this.next = clock + 1000; say(""); },
+      pop(l) { if (l && !l.ps.some(p => p.free)) { burst(l); release(l.ps, 48 + Math.floor(Math.random() * 24), 18); } },
+      step() {
+        if (clock < this.next) return;
+        this.pop(L[Math.floor(Math.random() * L.length)]);
+        this.next = clock + EXPLODE_EVERY;
+      },
+      down(x, y) { this.pop(nearestLetter(x, y, np * 6)); },
+    },
 
     /* ---- 1. Stay still: moving breaks the name, stillness rebuilds it ---- */
     still: {
@@ -341,14 +358,16 @@
   };
 
   // Pick a game: from the URL, otherwise random (not the same as last time)
-  const ids = Object.keys(games);
+  const ids = Object.keys(games).filter(g => g !== "calm");
   let id = params.get("game");
-  if (!games[id]) {
-    const lastId = store.get("hh-last-game");
-    const pool = ids.filter(g => g !== lastId);
-    id = pool[Math.floor(Math.random() * pool.length)];
+  if (!games[id] || id === "calm") {
+    if (PLAY_GAMES) {
+      const lastId = store.get("hh-last-game");
+      const pool = ids.filter(g => g !== lastId);
+      id = pool[Math.floor(Math.random() * pool.length)];
+      store.set("hh-last-game", id);
+    } else id = "calm";
   }
-  store.set("hh-last-game", id);
   const game = games[id];
   document.documentElement.dataset.game = id;
 
@@ -487,7 +506,6 @@
     draw();
   }).observe(canvas);
   new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) start(); }).observe(canvas);
-  window.addEventListener("themechange", () => { readColors(); draw(); });
   layout(); draw(); start();
 
   if (params.has("debug")) window.__hero = { games, get id() { return id; }, get L() { return L; }, get P() { return P; }, get np() { return np; }, get ready() { return ready; } };

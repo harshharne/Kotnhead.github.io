@@ -43,10 +43,7 @@
     };
   }
   readColors();
-  window.addEventListener("themechange", () => {
-    readColors();
-    document.querySelectorAll("canvas[data-text][data-ready]").forEach(c => drawTile(c, false));
-  });
+
 
   function drawTile(canvas, hot) {
     const { cols, wrap, path, GH, LINE } = window.DotFont;
@@ -95,6 +92,40 @@
         a.addEventListener("mouseenter", () => drawTile(c, true));
         a.addEventListener("mouseleave", () => drawTile(c, false));
       }
+    });
+  }
+
+  /* ---------- dot-matrix headings ----------
+     Any element with data-dots is redrawn in the dot-matrix font.
+     Its CSS font-size sets the size, its CSS color sets the colour. */
+  function initDots(root = document) {
+    if (!window.DotFont) return;
+    const { cols, wrap, path, GH, LINE } = window.DotFont;
+    root.querySelectorAll("[data-dots]:not([data-ready])").forEach(el => {
+      el.dataset.ready = "";
+      const text = el.textContent.trim().replace(/\s+/g, " ");
+      el.innerHTML = `<span class="sr-only">${esc(text)}</span><canvas aria-hidden="true"></canvas>`;
+      const c = el.querySelector("canvas");
+      const draw = () => {
+        const cs = getComputedStyle(el);
+        const p = parseFloat(cs.fontSize) / GH;
+        const avail = el.dataset.dots === "nowrap" ? Infinity : (el.parentElement.clientWidth || 600);
+        const lines = wrap(text, Math.max(1, Math.floor(avail / p)));
+        const w = Math.max(...lines.map(cols)) * p, h = lines.length * LINE * p - (LINE - GH) * p;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        c.style.width = w + "px"; c.style.height = h + "px";
+        c.width = Math.ceil(w * dpr); c.height = Math.ceil(h * dpr);
+        const ctx = c.getContext("2d");
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = cs.color; ctx.beginPath();
+        lines.forEach((line, i) => path(ctx, line, 0, i * LINE * p, p));
+        ctx.fill();
+      };
+      draw();
+      new ResizeObserver(draw).observe(el.parentElement);
+      const a = el.closest("a") || (el.tagName === "A" ? el : null);
+      if (a) { a.addEventListener("mouseenter", () => requestAnimationFrame(draw)); a.addEventListener("mouseleave", () => requestAnimationFrame(draw)); }
     });
   }
 
@@ -170,7 +201,7 @@
       <div class="project-grid">
         <dl class="project-meta">${meta.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>
         <article>
-          <h1 class="project-title">${esc(p.title)}</h1>
+          <h1 class="project-title" data-dots>${esc(p.title)}</h1>
           ${p.summary ? `<p class="lead">${esc(p.summary)}</p>` : ""}
           <div class="project-body" style="margin-top:var(--s7)">
             ${body || `<p class="coming-soon"><span class="led"></span>Full write-up coming soon.</p>`}
@@ -182,6 +213,7 @@
         <a href="${projectUrl(next)}"><span class="label">Next →</span><span class="t">${esc(next.title)}</span></a>
       </nav>` : ""}`;
     initTiles(root);
+    initDots(root);
   }
 
   /* ---------- Notes ---------- */
@@ -231,4 +263,5 @@
   if (page === "project") renderProject();
   if (page === "notes") renderNotes();
   initTiles();
+  initDots();
 })();
