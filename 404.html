@@ -3,53 +3,74 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Not found — Harshwardhan Harne</title>
-  <meta name="description" content="This page doesn't exist.">
-  <meta property="og:title" content="Not found — Harshwardhan Harne">
-  <meta property="og:description" content="This page doesn't exist.">
-  <meta name="theme-color" content="#1f1f1f">
+  <title>Not found · Harshwardhan Harne</title>
+  <meta name="description" content="Harshwardhan Harne is a designer who builds AI and agentic experiences. M.Des New Media Design, NID Ahmedabad.">
+  <meta property="og:title" content="Harshwardhan Harne">
+  <meta property="og:description" content="Designer who builds AI and agentic experiences.">
+  <meta name="theme-color" content="#eeede8">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <script>document.documentElement.classList.add("js");</script>
+  <link rel="preload" href="assets/fonts/switzer-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/switzer-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/foundations.css">
   <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body data-page="404">
-  <header class="site-header">
-    <div class="wrap">
-      <a class="site-name" href="index.html" data-dots="nowrap">Harshwardhan Harne</a>
-      <nav aria-label="Main">
-        <ul class="nav">
-        <li><a href="work.html">Work</a></li>
-        <li><a href="notes.html">Notes</a></li>
-        <li><a href="playground.html">Playground</a></li>
-        <li><a href="resume.html">Resume</a></li>
-        <li><a href="about.html">About</a></li>
-        </ul>
-      </nav>
+
+  <header class="site-header page">
+    <div class="brand">
+      <a class="name" href="index.html" aria-label="Harshwardhan Harne, home"><span class="dots-l" data-name>Harshwardhan Harne</span></a>
     </div>
+    <nav aria-label="Main">
+      <ul class="nav">
+        <li><a class="nav-link" href="work.html">Work</a></li>
+        <li><a class="nav-link" href="notes.html">Notes</a></li>
+        <li><a class="nav-link" href="playground.html">Playground</a></li>
+        <li><a class="nav-link" href="resume.html">Resume</a></li>
+        <li><a class="nav-link" href="about.html">About</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="wrap">
-    <div class="lost">
-      <div class="tile"><canvas data-text="404" data-size="big" data-align="center" aria-hidden="true"></canvas></div>
-      <h1 class="sr-only">Page not found</h1>
-      <p style="color:var(--muted)">This page wandered off. <a href="index.html" style="color:var(--text)">Go home →</a></p>
-    </div>
+  <main class="page">
+    <section class="page-intro">
+      <h1 class="dots-xl" data-dots="nowrap">Lost</h1>
+    </section>
+    <p class="placeholder-line">This page doesn’t exist. <a class="link" href="index.html">Go home</a> or <a class="link" href="work.html">see the work</a>.</p>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <span>© <span data-year>2026</span> Harshwardhan Harne · M.Des New Media Design, NID Ahmedabad</span>
-      <ul class="foot-links">
-        <li><a href="mailto:harshwardhan_h@nid.edu">harshwardhan_h@nid.edu</a></li>
-        <li><a href="https://www.linkedin.com/in/YOUR-HANDLE" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="https://www.instagram.com/YOUR-HANDLE" target="_blank" rel="noopener">Instagram</a></li>
-        <li><a href="https://github.com/harshharne" target="_blank" rel="noopener">GitHub</a></li>
-      </ul>
+  <!-- ===================== FOOTER =====================
+       Labelled groups, stacked. Replace # with your LinkedIn / Instagram links. -->
+  <footer class="site-footer page">
+    <div class="grid">
+      <div class="foot-group wide">
+        <h2>Contact</h2>
+        <a class="foot-email" href="mailto:harshwardhan_h@nid.edu">harshwardhan_h@nid.edu</a>
+        <div class="foot-meta">
+          <p>M.Des New Media Design</p>
+          <p>NID Ahmedabad</p>
+        </div>
+      </div>
+      <div class="foot-group">
+        <h2>Social</h2>
+        <!-- add your LinkedIn URL, then remove these comment marks: <a href="#" target="_blank" rel="noopener">LinkedIn <span class="arrow arrow-wave" aria-hidden="true"></span></a> -->
+        <!-- add your Instagram URL, then remove these comment marks: <a href="#" target="_blank" rel="noopener">Instagram <span class="arrow arrow-wave" aria-hidden="true"></span></a> -->
+        <a href="https://github.com/harshharne" target="_blank" rel="noopener">GitHub <span class="arrow arrow-wave" aria-hidden="true"></span></a>
+      </div>
+      <div class="foot-group">
+        <h2>More</h2>
+        <a href="resume.html">Resume</a>
+        <a href="notes.html">Notes</a>
+        <a href="playground.html">Playground</a>
+      </div>
     </div>
+    <p class="foot-base">© <span data-year>2026</span> Harshwardhan Harne</p>
   </footer>
 
   <script src="assets/js/dotfont.js"></script>
-  <script src="assets/js/content.js"></script>
-  <script src="assets/js/site.js"></script>
+  <script src="assets/js/dots.js"></script>
+  <script src="assets/js/name.js"></script>
+  <script>
+    document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
+  </script>
 </body>
 </html>

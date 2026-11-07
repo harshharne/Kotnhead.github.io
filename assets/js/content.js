@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    PROJECTS
    - Order here = order on the Work page.
-   - tags: a few short lowercase words, e.g. ["wearable", "AI"]. Keep it to 1-3.
+   - tags: a few short labels, e.g. ["Staging", "Voice Interfaces"]. Keep it to 2-4.
    - year: e.g. "2026". Shown next to the title.
    - cover: path to an image, e.g. "assets/projects/hark/cover.jpg".
             Leave "" and the project name is drawn in dot-matrix instead.
@@ -14,67 +14,42 @@
        { type: "gallery", items: [ { src: "...", caption: "" }, { src: "...", caption: "" } ] }
        { type: "video",   src: "https://www.youtube.com/watch?v=..." }   (YouTube, Vimeo or .mp4)
        { type: "quote",   text: "A line worth pulling out.", by: "Optional source" }
+   - featured: true puts it in "Selected work" on the landing page (pairs
+     read best, so 4 or 6). Placeholder picks for now; we curate in Phase B.
    - hidden: true keeps a project off the site without deleting it.
    ===================================================================== */
 
 window.SITE = {
   projects: [
     {
-      slug: "hark",
-      title: "Hark",
-      tags: ["haptics", "object", "sound"],
-      year: "",
-      summary: "A haptic stool that rewards stillness with melody.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "plumb",
-      title: "Plumb",
-      tags: ["biofeedback", "instrument"],
-      year: "",
-      summary: "A held instrument that reads EDA and HRV to amplify gut judgment.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "breathing-patch",
-      title: "Breathing Patch",
-      tags: ["wearable", "breath"],
-      year: "",
-      summary: "A sternal wearable for ambient breath tending in knowledge workers.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
       slug: "playing-against-chance",
       title: "Playing Against Chance",
-      tags: ["staged experience", "AI voice"],
+      featured: true,
+      tags: ["Prediction Machines", "Staging", "Experience Design", "Immersive Tech"],
       year: "",
-      summary: "A satirical game of life across life stages, narrated by an AI voice called the Bookkeeper.",
+      summary: "",
       cover: "",
       meta: { Role: "", Team: "", Tools: "", Duration: "" },
       body: [],
     },
     {
-      slug: "bird-periscope",
-      title: "Bird Periscope",
-      tags: ["AI", "object", "team"],
+      slug: "soma-tiles",
+      title: "Soma Tiles",
+      featured: true,
+      tags: ["Problem Solving", "Ambient Computing", "Interactive Hardware"],
       year: "",
-      summary: "A periscope-like AI object that makes people more curious about birds.",
+      summary: "",
       cover: "",
       meta: { Role: "", Team: "", Tools: "", Duration: "" },
       body: [],
     },
     {
-      slug: "aristotles-radio",
-      title: "Aristotle's Radio",
-      tags: ["object", "interface"],
+      slug: "modern-myth",
+      title: "Modern Myth",
+      featured: true,
+      tags: ["Kinetic Narratives", "Prototyping", "Innovative Storytelling"],
       year: "",
-      summary: "A radio with three unlabeled dials: ethos, logos, pathos.",
+      summary: "",
       cover: "",
       meta: { Role: "", Team: "", Tools: "", Duration: "" },
       body: [],
@@ -82,69 +57,21 @@ window.SITE = {
     {
       slug: "binni",
       title: "Binni",
-      tags: ["AI", "companion"],
+      featured: true,
+      tags: ["Human–AI Relationship", "Voice Interfaces"],
       year: "",
-      summary: "A tangible AI companion for people living with loneliness.",
+      summary: "",
       cover: "",
       meta: { Role: "", Team: "", Tools: "", Duration: "" },
       body: [],
     },
     {
-      slug: "seeker",
-      title: "Seeker",
-      tags: ["AI", "web"],
+      slug: "neev",
+      title: "Neev",
+      featured: true,
+      tags: ["Game Design", "User Experience"],
       year: "",
-      summary: "A spatial curiosity engine that pulls from YouTube and the Claude API.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "kin",
-      title: "Kin",
-      tags: ["speculative", "interface"],
-      year: "",
-      summary: "A speculative operating system organized around states of being, not tasks or files.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "cipher",
-      title: "Cipher",
-      tags: ["care", "tool"],
-      year: "",
-      summary: "A prescription interpretation tool for caregivers, designed to reduce anxiety.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "fleeting-gossips",
-      title: "Fleeting Gossips",
-      tags: ["installation"],
-      year: "",
-      summary: "Mannequins that shush and fade out as visitors walk past.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "kaleidoscope-weather",
-      title: "Kaleidoscope Weather",
-      tags: ["staged experience", "biofeedback"],
-      year: "",
-      summary: "A staged experience driven by live weather data and the viewer's biofeedback.",
-      cover: "",
-      meta: { Role: "", Team: "", Tools: "", Duration: "" },
-      body: [],
-    },
-    {
-      slug: "the-sublime",
-      title: "The Sublime",
-      tags: ["research", "writing"],
-      year: "",
-      summary: "Research into the sublime across philosophy, aesthetics and new media.",
+      summary: "",
       cover: "",
       meta: { Role: "", Team: "", Tools: "", Duration: "" },
       body: [],
@@ -163,5 +90,7 @@ window.SITE = {
      // { title: "Why stillness needs a reward", date: "2026-11-05", tags: ["writing"],
      //   related: "hark", url: "", body: "First paragraph.\n\nSecond paragraph." },
      =================================================================== */
-  notes: [],
+  notes: [
+    { title: "Mind–Body Disconnect", date: "", tags: [], related: "", url: "", body: "" },
+  ],
 };
