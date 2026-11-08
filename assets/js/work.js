@@ -13,7 +13,7 @@
 
   const tile = (p, shape = "") => `
     <a class="tile ${shape}" href="project.html?p=${encodeURIComponent(p.slug)}">
-      <div class="media tile-media">${p.cover
+      <div class="media tile-media${p.coverStyle === "diagram" ? " is-diagram" : ""}">${p.cover
         ? `<img src="${esc(p.cover)}" alt="" loading="lazy">`
         : `<span class="dots-m" data-dots>${esc(p.title)}</span>`}</div>
       <div class="tile-meta">
@@ -60,7 +60,7 @@
         active = b.dataset.tag;
         const url = new URL(location.href);
         if (active) url.searchParams.set("tag", active); else url.searchParams.delete("tag");
-        history.replaceState(null, "", url);
+        try { history.replaceState(null, "", url); } catch (e) { /* sandboxed preview */ }
         render();
       });
     }

@@ -271,7 +271,7 @@
     const hash = `#s=${current.join("-")}`, url = location.href.split("#")[0] + hash;
     let ok = false;
     try { await navigator.clipboard.writeText(url); ok = true; } catch (e) { /* clipboard blocked */ }
-    history.replaceState(null, "", hash);
+    try { history.replaceState(null, "", hash); } catch (e) { /* sandboxed preview */ }
     const label = share.querySelector("[data-label]"), was = label.textContent;
     label.textContent = ok ? "Link copied" : "Link in address bar";
     setTimeout(() => (label.textContent = was), 1800);
