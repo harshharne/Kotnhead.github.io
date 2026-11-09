@@ -35,6 +35,13 @@
   if (!root || !window.Synth || !window.Chance || !window.DotFont) return;
   const { mine, greats, frames } = window.Synth;
   const C = window.Chance, { glyph } = window.DotFont;
+
+  /* What the word "chance" under the sentence says when you hover or tap it.
+     It names the real source: atmospheric noise only once random.org is on. */
+  const CHANCE_TIP = {
+    "random.org": "The word in violet is picked from a pool of words using atmospheric noise, via random.org.",
+    other: "The word in violet is picked by chance from a pool of words.",
+  };
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = s => root.querySelector(s);
   const cv = $(".sy-grid"), ctx = cv.getContext("2d");
@@ -213,6 +220,28 @@
     }
   }
 
+  /* ---------- the chance tooltip: hover, focus or tap ---------- */
+  function tipWire(wrap, word, tip) {
+    const place = () => {   // keep it inside the screen
+      tip.style.setProperty("--shift", "0px");
+      const r = tip.getBoundingClientRect(), pad = 12;
+      const shift = r.left < pad ? pad - r.left : r.right > innerWidth - pad ? innerWidth - pad - r.right : 0;
+      tip.style.setProperty("--shift", `${shift}px`);
+    };
+    let shownAt = 0;
+    const show = () => { if (!wrap.classList.contains("is-open")) shownAt = performance.now(); wrap.classList.add("is-open"); word.setAttribute("aria-expanded", "true"); tipOpen = true; place(); };
+    const hide = () => { wrap.classList.remove("is-open"); word.setAttribute("aria-expanded", "false"); tipOpen = false; };
+    tipOpen = false; tipHide = hide; tipWrap = wrap;
+    wrap.addEventListener("pointerenter", e => e.pointerType === "mouse" && show());
+    wrap.addEventListener("pointerleave", e => e.pointerType === "mouse" && hide());
+    word.addEventListener("focus", show);
+    word.addEventListener("blur", hide);
+    word.addEventListener("click", () => (wrap.classList.contains("is-open") && performance.now() - shownAt > 300 ? hide() : show()));   // a tap toggles
+    word.addEventListener("keydown", e => e.key === "Escape" && (hide(), word.blur()));
+  }
+  let tipHide = null, tipWrap = null;
+  document.addEventListener("pointerdown", e => { if (tipHide && !tipWrap.contains(e.target)) tipHide(); });   // tap anywhere else closes it
+
   /* ---------- the small line underneath ---------- */
   function noteIn() {
     const g = greats[current[1]];
@@ -221,14 +250,20 @@
     note.append("From ", el("span", "sy-who", "me"), ", ", el("span", "sy-who", g.who), " ");
     const src = el("span", "sy-src", "");
     if (g.url) { const a = el("a", null, g.src); a.href = g.url; a.target = "_blank"; a.rel = "noopener"; src.append("(", a, ")"); } else src.textContent = `(${g.src})`;
-    note.append(src, " and ", el("span", "sy-chance", "chance"), ".");   // violet, like the word chance picked
+    const tip = el("span", "sy-tip", CHANCE_TIP[C.source] || CHANCE_TIP.other);
+    tip.id = "sy-tip"; tip.setAttribute("role", "tooltip");
+    const word = el("button", "sy-chance", "chance");   // violet, like the word chance picked
+    word.type = "button"; word.setAttribute("aria-describedby", "sy-tip"); word.setAttribute("aria-expanded", "false");
+    const wrap = el("span", "sy-chance-wrap"); wrap.append(word, tip);
+    note.append(src, " and ", wrap, ".");
+    tipWire(wrap, word, tip);
     root.classList.add("is-settled");
     const text = compose(...current).map(c => c.ch).join("");
     live.textContent = text; cv.setAttribute("aria-label", text);
   }
 
   /* ---------- timeline: come up → hold 11s → roll away → come up ---------- */
-  let active = false, onScreen = true, hover = false, raf = null, last = 0, lastNoise = 0, holdLeft = HOLD, settled = false;
+  let active = false, onScreen = true, hover = false, tipOpen = false, raf = null, last = 0, lastNoise = 0, holdLeft = HOLD, settled = false;
   function regenerate(now) {
     leaving = new Map();
     for (const [i, c] of cells) leaving.set(i, { ...c, at: now + Math.random() * DISSOLVE });
@@ -246,7 +281,7 @@
     }
     if (!settled && now >= settleAt) { settled = true; noteIn(); }
     if (leaving && now > phaseStart + DISSOLVE + LEAVE) leaving = null;
-    if (settled && !hover) { holdLeft -= dt; if (holdLeft <= 0) regenerate(now); }
+    if (settled && !hover && !tipOpen) { holdLeft -= dt; if (holdLeft <= 0) regenerate(now); }
     draw(now);
     raf = requestAnimationFrame(frame);
   }

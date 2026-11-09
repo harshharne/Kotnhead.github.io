@@ -497,3 +497,16 @@ ol.cs-dg-alt > li > ul li::before { content: "— "; color: var(--faint); }
   .cs-tg-faces { grid-column: 1 / -1; grid-row: 2; }
   .cs-die { width: 26px; height: 26px; }
 }
+
+/* the word "chance" under the centre piece: hover, focus or tap says what chance is */
+.sy-chance-wrap { position: relative; display: inline-block; }
+.sy-note .sy-chance { font: inherit; color: var(--accent); font-weight: var(--w-medium); cursor: help; text-decoration: underline dotted; text-decoration-color: rgba(94, 82, 151, 0.45); text-underline-offset: 0.25em; }
+.sy-tip {
+  position: absolute; z-index: 5; left: 50%; bottom: calc(100% + 10px); width: max-content; max-width: min(280px, 80vw);
+  transform: translate(calc(-50% + var(--shift, 0px)), 4px); opacity: 0; pointer-events: none;
+  padding: 10px 12px; background: var(--text); color: var(--bg); border-radius: 10px;
+  font-size: var(--t-caption); line-height: 1.45; letter-spacing: 0; text-align: left; white-space: normal;
+  transition: opacity .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.sy-chance-wrap.is-open .sy-tip { opacity: 1; transform: translate(calc(-50% + var(--shift, 0px)), 0); pointer-events: auto; }
+@media (prefers-reduced-motion: reduce) { .sy-tip { transition: none; } }
