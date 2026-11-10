@@ -28,7 +28,7 @@ window.SITE = {
       "meta": {
         "Year": "2026",
         "Context": "M.Des New Media Design, NID Ahmedabad",
-        "Tools": "Python, FastAPI, random.org, Stable Diffusion (SD-Turbo), MediaPipe, one physical die",
+        "Tools": "Python, FastAPI, random.org, Stable Diffusion (SDXL-Turbo), MediaPipe, LLM, Speech to Speech Models, one physical die",
         "Status": "In progress"
       },
       "body": [
