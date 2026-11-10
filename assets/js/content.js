@@ -28,7 +28,7 @@ window.SITE = {
       ],
       "year": "2026",
       "summary": "An installation where you live one life, and a die decides most of it",
-      "cover": "",
+      "cover": "assets/projects/playing-against-chance/cover.jpg",
       "meta": {
         "Year": "2026",
         "Context": "M.Des New Media Design, NID Ahmedabad",
@@ -291,7 +291,10 @@ window.SITE = {
           "type": "text",
           "text": "The project is moving toward a serious game: slower, contemplative play where each choice makes you think about your own life. Still open are the Bookkeeper’s voice and how much the player steers versus drifts."
         }
-      ]
+      ],
+      "coverStyle": "photo",
+      "coverAlt": "A small grey die in mid-air above white paper, its shadow beneath it",
+      "pageCover": false
     },
     {
       "slug": "soma-tiles",
@@ -304,9 +307,9 @@ window.SITE = {
       ],
       "year": "2026",
       "summary": "Peripheral sensory objects that make your breath visible to your body, not your mind",
-      "cover": "assets/projects/soma-tiles/cover.webp",
+      "cover": "assets/projects/soma-tiles/symbols.webp",
       "coverStyle": "diagram",
-      "coverAlt": "Five triangular tiles: linen with a breeze mark, wood with a speaker grille, clear acrylic with a ring of lights, a pale tile with a raised ripple, and terracotta with an opening at the top",
+      "coverAlt": "The five Soma Tiles marks in a row: a sun for light, a ripple for touch, a curl for smell, a wave for sound, and lines of wind for breeze",
       "pageCover": false,
       "meta": {
         "Course": "Design Project 1 · Problem Solving",
@@ -738,9 +741,9 @@ window.SITE = {
       ],
       "year": "",
       "summary": "A kinetic sculpture that tells a myth about speed, knowledge, and what we trade for them",
-      "cover": "assets/projects/modern-myth/cover.jpg",
+      "cover": "assets/projects/modern-myth/title.jpg",
       "coverStyle": "photo",
-      "coverAlt": "Render of the sculpture: a wooden base holding a glass wheel, a small viewing box, a cage of rods with a spiral of discs, a brass pentagon, an hourglass in a glass capsule and a three-weight pendulum",
+      "coverAlt": "A Modern Myth, written in brown serif italic on tan",
       "pageCover": false,
       "meta": {
         "Form": "Kinetic sculpture, seven moving objects",
