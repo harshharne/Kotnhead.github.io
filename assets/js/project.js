@@ -64,7 +64,7 @@
     compare: b => `<div class="cs-compare">${b.items.map(s => `
       <div class="cs-side"><h3>${esc(s.title)}</h3>${paras(s.text)}<span class="cs-source">${esc(s.source)}</span></div>`).join("")}</div>`,
     bars: b => `<div class="cs-chart"><p class="cs-chart-q">${esc(b.question)}</p><ul class="cs-bars">${b.rows.map(([l, n]) => `
-      <li><span class="cs-bar-label">${esc(l)}</span><span class="cs-bar"><i style="width:${(n / b.total) * 100}%"></i></span><span class="cs-bar-n">${n} of ${b.total}</span></li>`).join("")}</ul>${b.note ? `<p class="cs-source">${esc(b.note)}</p>` : ""}</div>`,
+      <li><span class="cs-bar-label">${esc(l)}</span><span class="cs-bar"><i style="width:${(n / b.total) * 100}%"></i></span><span class="cs-bar-n">${b.unit ? `${n}${esc(b.unit)}` : `${n} of ${b.total}`}</span></li>`).join("")}</ul>${b.note ? `<p class="cs-source">${esc(b.note)}</p>` : ""}</div>`,
     split: b => `<div class="cs-chart"><p class="cs-chart-q">${esc(b.question)}</p>
       <div class="cs-split">${b.rows.map(([l, n], k) => `<i class="tone-${k}" style="flex:${n}"></i>`).join("")}</div>
       <ul class="cs-split-key">${b.rows.map(([l, n], k) => `<li><i class="tone-${k}"></i>${esc(l)} <span>${Math.round((n / b.total) * 1000) / 10}%</span></li>`).join("")}</ul></div>`,
@@ -122,7 +122,8 @@
       ${b.rows.map(r => `<div class="cs-tr" role="row">${b.head.map((h, k) => `<span role="cell" data-h="${esc(h)}">${k === 0 ? `<b>${esc(r[k])}</b>` : esc(r[k] ?? "")}</span>`).join("")}</div>`).join("")}</div>`,
     sources: b => `<div class="cs-sources"><h3>Sources</h3><ol>${b.items.map(s => `<li>${s.url ? `<a class="link" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ol></div>`,
   };
-  const render = b => (R[b.type] ? R[b.type](b) : "");
+  // other scripts can add block types (window.CaseStudyExtra) and wire them up after drawing (window.CaseStudyInit)
+  const render = b => { const f = R[b.type] || (window.CaseStudyExtra || {})[b.type]; return f ? f(b) : ""; };
 
   /* ---------- photos: a row of photos at their own shapes, one shared height ----------
      items [{ src, alt, caption, date, r }]; r is width ÷ height (read from the image when it loads).
@@ -425,5 +426,6 @@
   root.innerHTML = intro(p) + cover(p) + body + nextLink;
   if (window.Dots) window.Dots.run(root);
   fit(root);
+  (window.CaseStudyInit || []).forEach(f => f(root));
   narrow.addEventListener("change", () => fit(root));
 })();

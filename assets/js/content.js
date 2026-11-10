@@ -1598,8 +1598,8 @@ window.SITE = {
       "meta": {
         "Year": "2025",
         "Focus": "Constitutional literacy through play",
-        "Stage": "Concept · UI wireframes",
-        "Platform": "Mobile app"
+        "Methods": "Desk research · audit · proto-personas · journey map",
+        "Stage": "Concept · wireframes · playable prototype"
       },
       "body": [
         {
@@ -1608,68 +1608,629 @@ window.SITE = {
           "by": "B R Ambedkar, Writings And Speeches: A Ready Reference Manual"
         },
         {
-          "type": "section",
-          "label": "01  Context",
-          "title": "Essential for every citizen, yet it remains low."
-        },
-        {
-          "type": "bubbles",
-          "center": "But, citizens face issues like",
-          "centerAt": 2,
+          "type": "cards",
+          "cols": 3,
           "items": [
             {
-              "label": "Misinterpretation",
-              "size": "s"
+              "kicker": "The problem",
+              "title": "Rights nobody can read",
+              "text": "The Constitution is 145,000 words of legal English. Most people meet it only when a right is already at stake, and then they can’t use it."
             },
             {
-              "label": "Unaware of fundamental rights",
-              "size": "m"
+              "kicker": "What I did",
+              "title": "Rehearse it as a game",
+              "text": "A decision game. You play a journalist, a police officer or a politician, and get through real situations with your rights and duties. The learning happens in the choice."
             },
             {
-              "label": "Poor constitutional education",
-              "size": "l"
-            },
-            {
-              "label": "Weak enforcement",
-              "size": "s"
-            },
-            {
-              "label": "Misunderstanding of laws",
-              "size": "l"
-            },
-            {
-              "label": "Unaware of fundamental duties",
-              "size": "m"
+              "kicker": "Where it is",
+              "title": "Concept, playable core",
+              "text": "Wireframes and a playable prototype of the core loop. The research so far is desk research; testing with players comes next."
             }
           ]
         },
         {
+          "type": "neevplay",
+          "title": "Play a card",
+          "caption": "The core loop, playable. Pick an arc and make the calls.",
+          "arcs": [
+            {
+              "name": "Journalist",
+              "line": "Speech, information and their limits",
+              "cards": [
+                {
+                  "steps": [
+                    {
+                      "scene": "protest",
+                      "alt": "Dots resolve into a line of protesters holding a placard, and a camera in the foreground",
+                      "q": "You’re filming a protest outside the collector’s office. An official tells you to stop and delete your footage.",
+                      "hint": "Free expression has limits. But who sets them, and how?",
+                      "article": "Article 19(1)(a) · 19(2)",
+                      "options": [
+                        {
+                          "text": "Keep filming from the public road, and ask which order stops you",
+                          "sound": true,
+                          "why": "Freedom of the press is part of your freedom of speech and expression, Article 19(1)(a). It can be limited only by law, on grounds Article 19(2) lists, such as public order. Asking which order applies is fair."
+                        },
+                        {
+                          "text": "Delete it. It’s not worth the trouble",
+                          "sound": false,
+                          "why": "You gave up a right without being shown why. Limits on speech have to come from a law, on the grounds Article 19(2) lists, and you can ask which one applies."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "rti",
+                      "alt": "Dots resolve into a stack of files and an official stamp",
+                      "q": "You want to know how the town’s road budget was spent. The office says the files are internal.",
+                      "hint": "One law turns ‘internal’ into ‘ask and you shall be told’.",
+                      "article": "RTI Act, 2005 · Article 19(1)(a)",
+                      "options": [
+                        {
+                          "text": "File an RTI application with the department",
+                          "sound": true,
+                          "why": "Under the Right to Information Act, 2005, any citizen can ask a public authority for information, and it must usually reply within 30 days. The Supreme Court has read the right to know into Article 19(1)(a)."
+                        },
+                        {
+                          "text": "Wait for the official press release",
+                          "sound": false,
+                          "why": "Waiting leaves the story to the office. The Right to Information Act, 2005 lets any citizen ask for the records, and the authority must usually reply within 30 days."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "comment",
+                      "alt": "Dots resolve into a phone screen of comments, one crossed out",
+                      "q": "Your story goes viral. The top comment calls on readers to attack a community. Do you pin it for the engagement?",
+                      "hint": "Does free speech cover every kind of speech?",
+                      "article": "Article 19(2)",
+                      "options": [
+                        {
+                          "text": "Remove it",
+                          "sound": true,
+                          "why": "Free speech doesn’t cover incitement to an offence or threats to public order. Article 19(2) lets the law restrict both."
+                        },
+                        {
+                          "text": "Pin it. It’s just speech",
+                          "sound": false,
+                          "why": "Article 19(2) lets the law restrict speech that incites an offence or threatens public order. A call to attack people is exactly that."
+                        }
+                      ]
+                    },
+                    {
+                      "scene": "voices",
+                      "alt": "Dots resolve into many speech bubbles, some faint, some bold",
+                      "q": "A forwarded video says a vaccine carries a tracking chip. Your editor wants it on the homepage.",
+                      "hint": "Among a citizen’s duties is a way of thinking.",
+                      "article": "Article 51A(h)",
+                      "options": [
+                        {
+                          "text": "Check it before anything runs",
+                          "sound": true,
+                          "why": "Article 51A(h) lists a scientific temper and the spirit of inquiry among every citizen’s fundamental duties. For a journalist, that starts with checking."
+                        },
+                        {
+                          "text": "Run it. Readers love this",
+                          "sound": false,
+                          "why": "Article 51A(h) asks every citizen to develop a scientific temper and a spirit of inquiry. Running it unchecked spreads it with your name on it."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Police officer",
+              "line": "Power, and the rights that check it",
+              "cards": [
+                {
+                  "steps": [
+                    {
+                      "scene": "arrest",
+                      "alt": "Dots resolve into an officer in a cap beside a man, a pair of handcuffs between them",
+                      "q": "You arrest a man for stealing a phone. He asks why he is being taken.",
+                      "hint": "An arrest comes with things the arrested person must be told.",
+                      "article": "Article 22(1)",
+                      "options": [
+                        {
+                          "text": "Tell him the grounds of arrest",
+                          "sound": true,
+                          "why": "Article 22(1): no one who is arrested can be held without being told the grounds as soon as may be. He may also consult a lawyer of his choice."
+                        },
+                        {
+                          "text": "He’ll find out at the station",
+                          "sound": false,
+                          "why": "Article 22(1) says an arrested person must be told the grounds as soon as may be, and may consult a lawyer of their choice."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "family",
+                      "alt": "Dots resolve into a house and a phone sending a signal",
+                      "q": "At the station, he asks for his family to be told where he is.",
+                      "hint": "The Supreme Court spelt out what an arrest must include.",
+                      "article": "Article 21 · D.K. Basu, 1997",
+                      "options": [
+                        {
+                          "text": "Inform a relative or friend he names",
+                          "sound": true,
+                          "why": "In D.K. Basu v. State of West Bengal (1997), the Supreme Court read Article 21 to require that a friend or relative be told of the arrest and where the person is held."
+                        },
+                        {
+                          "text": "That isn’t your job",
+                          "sound": false,
+                          "why": "It is. In D.K. Basu v. State of West Bengal (1997), the Supreme Court read Article 21 to require that a friend or relative be told of the arrest and where the person is held."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "clock",
+                      "alt": "Dots resolve into a clock face, most of it filled",
+                      "q": "He has been in custody for 20 hours. Your senior says to hold him over the weekend.",
+                      "hint": "Custody has a clock on it.",
+                      "article": "Article 22(2)",
+                      "options": [
+                        {
+                          "text": "Produce him before a magistrate within 24 hours",
+                          "sound": true,
+                          "why": "Article 22(2): an arrested person must be produced before the nearest magistrate within 24 hours, not counting the journey. Holding him longer needs the magistrate’s order."
+                        },
+                        {
+                          "text": "Hold him till Monday",
+                          "sound": false,
+                          "why": "Article 22(2) requires an arrested person to be produced before the nearest magistrate within 24 hours, not counting the journey. Only a magistrate can extend custody."
+                        }
+                      ]
+                    },
+                    {
+                      "scene": "room",
+                      "alt": "Dots resolve into a lamp over a table, a person on each side",
+                      "q": "During questioning, he refuses to say whether he took the phone.",
+                      "hint": "Can the accused be made to give evidence against themselves?",
+                      "article": "Article 20(3)",
+                      "options": [
+                        {
+                          "text": "Respect his silence, and build the case on evidence",
+                          "sound": true,
+                          "why": "Article 20(3): no person accused of an offence can be compelled to be a witness against himself."
+                        },
+                        {
+                          "text": "Keep pressing until he confesses",
+                          "sound": false,
+                          "why": "Article 20(3) protects an accused person from being compelled to be a witness against himself. A forced confession breaks that right."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Politician",
+              "line": "Equality, the vote and duties",
+              "cards": [
+                {
+                  "steps": [
+                    {
+                      "scene": "podium",
+                      "alt": "Dots resolve into a speaker at a podium before a crowd",
+                      "q": "A party worker suggests promising a new state scheme only to families of one religion in your ward.",
+                      "hint": "Can the State choose people by religion alone?",
+                      "article": "Articles 14 · 15(1)",
+                      "options": [
+                        {
+                          "text": "Open it to every eligible family",
+                          "sound": true,
+                          "why": "Article 15(1): the State shall not discriminate against any citizen on grounds only of religion, race, caste, sex or place of birth. Article 14 guarantees equality before the law."
+                        },
+                        {
+                          "text": "Promise it. It wins votes",
+                          "sound": false,
+                          "why": "Article 15(1) bars the State from discriminating on grounds only of religion, among others. A scheme limited by religion alone fails that test."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "well",
+                      "alt": "Dots resolve into a village well and a woman carrying a pot",
+                      "q": "Elders in a village ask you to stop a Dalit family from drawing water at the common well.",
+                      "hint": "One Article ends a practice outright.",
+                      "article": "Articles 17 · 15(2)",
+                      "options": [
+                        {
+                          "text": "Refuse, and make sure the family can draw water",
+                          "sound": true,
+                          "why": "Article 17 abolishes untouchability and forbids its practice in any form. Article 15(2) guarantees every citizen the use of public wells."
+                        },
+                        {
+                          "text": "Stay out of it. It’s their custom",
+                          "sound": false,
+                          "why": "Untouchability is abolished by Article 17, and enforcing it is an offence under law. Article 15(2) guarantees every citizen the use of public wells."
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "steps": [
+                    {
+                      "scene": "ballot",
+                      "alt": "Dots resolve into a ballot paper going into a box",
+                      "q": "On polling day, a rival’s agent says people from the settlement by the river shouldn’t vote because they don’t own land.",
+                      "hint": "What does it take to be a voter?",
+                      "article": "Article 326",
+                      "options": [
+                        {
+                          "text": "Say it plainly: every adult citizen can vote",
+                          "sound": true,
+                          "why": "Article 326: elections are held on adult suffrage. Every citizen who is 18 or older and not disqualified by law can vote. Owning land has nothing to do with it."
+                        },
+                        {
+                          "text": "Let the officials sort it out",
+                          "sound": false,
+                          "why": "Staying quiet lets a false rule stand. Article 326 gives the vote to every citizen 18 or older, with no condition of property."
+                        }
+                      ]
+                    },
+                    {
+                      "scene": "voices",
+                      "alt": "Dots resolve into many speech bubbles, some faint, some bold",
+                      "q": "Your team wants a rally speech that mocks people who speak another language.",
+                      "hint": "The Constitution lists duties, not only rights.",
+                      "article": "Article 51A(e)",
+                      "options": [
+                        {
+                          "text": "Drop it",
+                          "sound": true,
+                          "why": "Article 51A(e) asks every citizen to promote harmony and the spirit of common brotherhood across religious, linguistic and regional differences."
+                        },
+                        {
+                          "text": "Keep it. The crowd will love it",
+                          "sound": false,
+                          "why": "Among the fundamental duties, Article 51A(e) asks citizens to promote harmony across linguistic and regional differences. A leader sets the tone."
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "notes": [
+            [
+              "Arc",
+              "A role you play. Each arc is a run of cards around one part of the Constitution."
+            ],
+            [
+              "Scene",
+              "Every card opens with a picture of the moment, so the situation is seen before it is read. Here a fixed set develops dot by dot; in the product, each scene would be made for the card, the player’s region and role."
+            ],
+            [
+              "Choice",
+              "Two options in plain words, no Articles. The Article appears after you choose, attached to what just happened."
+            ],
+            [
+              "Guru",
+              "A hint costs one momentum point. Help is always there, but it costs something."
+            ],
+            [
+              "Neevsense",
+              "XP for playing, critical points for sound calls. A wrong call explains itself, and you can try again."
+            ]
+          ]
+        },
+        {
           "type": "section",
-          "label": "02  Gap",
-          "title": "Gaps in existing solutions"
+          "label": "01  Desk research",
+          "title": "Why the Constitution stays unread",
+          "sub": "No interviews yet. This is published data, and it shaped every decision after it."
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "value": "145,000",
+              "label": "words in the Constitution, the longest of any sovereign country",
+              "source": "World Economic Forum, 2019"
+            },
+            {
+              "value": "76%",
+              "label": "find legal documents hard to understand",
+              "source": "Vidhi Centre for Legal Policy, SARAL survey, 2025 (360 people)"
+            },
+            {
+              "value": "73%",
+              "label": "find it hard to exercise their legal rights",
+              "source": "Same survey"
+            }
+          ]
+        },
+        {
+          "type": "bars",
+          "question": "Why legal documents are hard to understand",
+          "unit": "%",
+          "total": 100,
+          "rows": [
+            [
+              "Not knowing the legal concepts",
+              54.5
+            ],
+            [
+              "Too long",
+              53.7
+            ],
+            [
+              "Legal jargon",
+              51.1
+            ],
+            [
+              "Unclear language",
+              31.5
+            ]
+          ],
+          "note": "Among the 271 who found them hard. Vidhi Centre for Legal Policy, SARAL survey, 2025, Bengaluru and Delhi NCR."
+        },
+        {
+          "type": "bars",
+          "question": "Who has access to legal resources or help, by age",
+          "unit": "%",
+          "total": 100,
+          "rows": [
+            [
+              "18–30",
+              30
+            ],
+            [
+              "31–40",
+              58
+            ],
+            [
+              "41–50",
+              63
+            ],
+            [
+              "51–60",
+              75
+            ],
+            [
+              "Over 60",
+              17
+            ]
+          ],
+          "note": "Same survey. Without access, 88% turn to friends or family and 77% to online resources."
+        },
+        {
+          "type": "text",
+          "size": "lead",
+          "text": "The youngest adults have the least access to help, and they are the ones with phones in their hands."
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "value": "886 million",
+              "label": "active internet users in India",
+              "source": "IAMAI and Kantar, Internet in India 2024"
+            },
+            {
+              "value": "488 million",
+              "label": "of them in rural India, more than in cities",
+              "source": "Same report"
+            },
+            {
+              "value": "98%",
+              "label": "use the internet in Indian languages",
+              "source": "Same report"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Gamification isn’t a guarantee. A meta-analysis of 40 experiments (Sailer and Homner, 2020) found it helps learning, with the clearest effect on what people know and smaller effects on motivation and behaviour.\n\nTwo details mattered for Neev. A story around the game helped change behaviour. And competition worked better mixed with collaboration than on its own."
+        },
+        {
+          "type": "section",
+          "label": "02  Audit",
+          "title": "What already exists",
+          "sub": "Four kinds of help a citizen can find today, against what the research asks for."
+        },
+        {
+          "type": "table",
+          "head": [
+            "",
+            "Plain language",
+            "Real situations",
+            "Indian languages",
+            "Reason to return"
+          ],
+          "rows": [
+            [
+              "Bare-act apps",
+              "No, the full legal text",
+              "No",
+              "Varies",
+              "No"
+            ],
+            [
+              "Nyaaya, Vidhi Centre",
+              "Yes",
+              "As explainers",
+              "English, Hindi, Kannada",
+              "No"
+            ],
+            [
+              "Constitution quizzes",
+              "Partly",
+              "No",
+              "Varies",
+              "One-off"
+            ],
+            [
+              "iCivics (USA)",
+              "Yes",
+              "Yes, as games",
+              "Not for India",
+              "Yes"
+            ],
+            [
+              "Neev",
+              "Yes",
+              "Yes, as cards",
+              "Planned",
+              "Arcs, streaks, Neevsense"
+            ]
+          ]
         },
         {
           "type": "cards",
           "cols": 3,
           "items": [
             {
-              "kicker": "01",
-              "title": "No interactive learning"
+              "kicker": "Gap 01",
+              "title": "No interactive learning",
+              "text": "Reading is the only way in."
             },
             {
-              "kicker": "02",
-              "title": "Caters to professionals only"
+              "kicker": "Gap 02",
+              "title": "Made for professionals",
+              "text": "Written for lawyers and exam takers."
             },
             {
-              "kicker": "03",
-              "title": "Lacks engagement"
+              "kicker": "Gap 03",
+              "title": "Nothing to come back to",
+              "text": "Look something up once, then leave."
             }
           ]
         },
         {
           "type": "section",
-          "label": "03  Ideation",
-          "title": "Using the gaps as the corner stones"
+          "label": "03  Proto-personas",
+          "title": "Who Neev is for, assumed",
+          "sub": "Built from the research above, not from interviews. Hypotheses to test, not findings."
+        },
+        {
+          "type": "cards",
+          "cols": 2,
+          "items": [
+            {
+              "kicker": "Proto-persona · 19",
+              "title": "The first-time voter",
+              "text": "Studies in a small city and lives on a phone, in Hindi and English. Knows the Preamble from a school wall. Has never read an Article.",
+              "list": [
+                "Wants: to know what to do when it matters",
+                "Stuck on: legal words, long text",
+                "Asks: friends, family, search"
+              ]
+            },
+            {
+              "kicker": "Proto-persona · 26",
+              "title": "The new earner",
+              "text": "First job, first rent agreement, first office that won’t answer. Short on time, not on curiosity.",
+              "list": [
+                "Wants: to get through it without a lawyer",
+                "Stuck on: no time, no one to ask",
+                "Asks: whatever comes up online"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "label": "04  Journey",
+          "title": "When a right is at stake, today"
+        },
+        {
+          "type": "table",
+          "head": [
+            "",
+            "Something happens",
+            "Looks it up",
+            "Makes sense of it",
+            "Acts"
+          ],
+          "rows": [
+            [
+              "Doing",
+              "A police stop, a refused form, a notice",
+              "Searches, asks family",
+              "Reads the bare text, or a forward",
+              "Complies, or gives up"
+            ],
+            [
+              "Feeling",
+              "Unsure",
+              "Overwhelmed",
+              "Doubtful",
+              "Powerless"
+            ],
+            [
+              "With Neev",
+              "Has played it before",
+              "Guru, in plain words",
+              "Sees the Article inside a story",
+              "Knows the move"
+            ]
+          ]
+        },
+        {
+          "type": "statement",
+          "text": "Learn it before the moment, the way a fire drill works."
+        },
+        {
+          "type": "section",
+          "label": "05  Principles",
+          "title": "Four rules from the research"
+        },
+        {
+          "type": "cards",
+          "cols": 4,
+          "items": [
+            {
+              "kicker": "Jargon",
+              "title": "Situations before Articles",
+              "text": "Start from what happens. Name the Article after the choice, never before."
+            },
+            {
+              "kicker": "Length",
+              "title": "Seconds, not chapters",
+              "text": "One decision per card. The Constitution is 145,000 words; a card is under forty."
+            },
+            {
+              "kicker": "Reach",
+              "title": "In your language",
+              "text": "98% of Indian internet users use Indian languages. English only is a wall."
+            },
+            {
+              "kicker": "Motivation",
+              "title": "Play with, not only against",
+              "text": "Competition works better mixed with collaboration. The regional leaderboard stays; team arcs are next."
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "label": "06  Ideation",
+          "title": "Using the gaps as corner stones"
         },
         {
           "type": "pair",
@@ -1690,44 +2251,12 @@ window.SITE = {
         },
         {
           "type": "text",
-          "text": "Worked on finding a solution that is accessible while using the gaps as the corner stones. Through a series of ideation sessions, decided to move forward with:"
-        },
-        {
-          "type": "statement",
-          "text": "A Gamified Learning App!"
+          "text": "Through a series of ideation sessions, the three gaps became the brief: interactive, for everyone, worth coming back to. The answer was a decision game."
         },
         {
           "type": "section",
-          "label": "04  Neev",
-          "title": "Gamified Learning"
-        },
-        {
-          "type": "cards",
-          "cols": 2,
-          "items": [
-            {
-              "title": "Problem statement",
-              "text": "Constitutional awareness is very essential for every citizen, yet it remains low due to complex jargon filled language, lack of engaging resources and unexplored real world applications."
-            },
-            {
-              "title": "Insight",
-              "text": "Gamifying constitutional knowledge can transform the jargon heavy legal literacy for a citizen into a fun and personal strategic journey, empowering them to navigate real world scenarios with confidence."
-            },
-            {
-              "title": "Idea",
-              "text": "A decision making strategy oriented game based on constitutional literacy woven with real life scenarios."
-            },
-            {
-              "title": "Game mechanics",
-              "text": "Following a hero’s journey, the player has to make strategic decisions while facing scenarios through different character driven arcs, and also manage the momentum points. A Neevsense score will be given to each player based on their respective gameplay."
-            }
-          ]
-        },
-        {
-          "type": "section",
-          "label": "05  UX thinking",
-          "title": "UX Thinking",
-          "sub": "Three questions, each answered by the game itself."
+          "label": "07  UX thinking",
+          "title": "Three questions the game has to answer"
         },
         {
           "type": "stairs",
@@ -1775,9 +2304,9 @@ window.SITE = {
         },
         {
           "type": "section",
-          "label": "06  System",
+          "label": "08  System",
           "title": "How Neev fits together",
-          "sub": "Three parts: where you play, where you learn, and what measures you."
+          "sub": "Where you play, where you learn, and what measures you."
         },
         {
           "type": "system",
@@ -1865,13 +2394,8 @@ window.SITE = {
           ]
         },
         {
-          "type": "section",
-          "label": "07  Journey",
-          "title": "Journey"
-        },
-        {
           "type": "text",
-          "text": "Journey is a narrative based progression where players navigate through different arcs where they assume different roles, and make informed decisions via scenario cards."
+          "text": "Journey is the story: arcs where you take on a role and decide through scenario cards. A card can be single-layered, one clear choice, or multi-layered, choices that unfold in steps. Complexity rises as you progress."
         },
         {
           "type": "track",
@@ -1883,12 +2407,6 @@ window.SITE = {
           "more": "more arcs",
           "keyArc": "Arc (a role you play)",
           "keyCard": "Scenario card"
-        },
-        {
-          "type": "section",
-          "label": "08  Scenario cards",
-          "title": "Scenario Cards",
-          "sub": "Scenario cards challenge players with constitutional situations in two types."
         },
         {
           "type": "scenario",
@@ -1922,74 +2440,34 @@ window.SITE = {
           }
         },
         {
-          "type": "text",
-          "text": "Cards may present fixed outcomes, dilemmas, or uncertain results, with complexity increasing as players progress."
-        },
-        {
-          "type": "section",
-          "label": "09  Neevsense",
-          "title": "Neevsense"
-        },
-        {
-          "type": "text",
-          "text": "A player’s lifetime score, purely based on their gameplay, measured by factors like momentum points, critical points and experience points. Neevsense will be the deciding factor for players regarding the bonus benefits. A live leaderboard for the players will be published based on the Neevsense score."
-        },
-        {
-          "type": "venn",
-          "alt": "Neevsense: three overlapping circles, Critical Points, Momentum Points and Experience Points",
-          "circles": [
-            {
-              "label": "Critical\nPoints",
-              "note": "Critical points play a key role in\nanalysing players’ decision-making\npatterns and gameplay strategies,\nrevealing their approach, reasoning,\nand understanding of constitutional\nprinciples."
-            },
-            {
-              "label": "Momentum\nPoints",
-              "note": "Momentum Points let players\nperform in-game tasks, like\nadvancing their journey or\nlearning from the guru."
-            },
-            {
-              "label": "Experience\nPoints",
-              "note": "Experience points reflect a\nplayer’s progress, learning,\nand mastery in the game."
-            }
-          ]
-        },
-        {
-          "type": "section",
-          "label": "10  Guru",
-          "title": "Guru"
-        },
-        {
-          "type": "text",
-          "text": "Is a player’s trusted guide to master Neev and gain understanding of everything constitution in a very intuitive and simple manner. It will help the player in gaining confidence in their decisions and allow them to enhance their abilities to strike a balance between understanding of rights and duties likewise. Also, this is the place where players can come and get a more in-depth understanding of past concepts."
-        },
-        {
           "type": "cards",
-          "cols": 2,
+          "cols": 3,
           "items": [
             {
-              "kicker": "Learn",
-              "title": "Gyaandhara",
-              "list": [
-                "Multi-format learning",
-                "Fun and accessible",
-                "Consume knowledge strategically"
-              ]
+              "kicker": "Neevsense",
+              "title": "Momentum points",
+              "text": "Spent to move the journey forward and to learn from Guru."
             },
             {
-              "kicker": "Practise",
-              "title": "Maidan",
-              "list": [
-                "Practice understanding",
-                "Replayability",
-                "Identify mistakes",
-                "Work on abilities"
-              ]
+              "kicker": "Neevsense",
+              "title": "Critical points",
+              "text": "Show how a player decides: their reasoning and their grasp of constitutional principles."
+            },
+            {
+              "kicker": "Neevsense",
+              "title": "Experience points",
+              "text": "Progress and mastery over time."
             }
           ]
         },
         {
+          "type": "text",
+          "text": "Neevsense is a player’s lifetime score, made from all three. It decides bonus benefits and a live, regional leaderboard. Guru is the trusted guide: Gyaandhara for learning in many formats, Maidan for practice, replays and mistakes."
+        },
+        {
           "type": "section",
-          "label": "11  Interface",
-          "title": "UI Wireframes"
+          "label": "09  Interface",
+          "title": "From wireframes to a playable card"
         },
         {
           "type": "figure",
@@ -1997,6 +2475,10 @@ window.SITE = {
           "alt": "Five wireframes: Login, Journey, Guru, Neevsense and Scenario Card",
           "style": "dark",
           "size": "full"
+        },
+        {
+          "type": "text",
+          "text": "The scenario card gives its top half to the scene. A picture of the moment comes first, the question second, and the Article only after the choice. In the prototype above, the scene develops as the card opens, so every card feels made for that turn of the game."
         },
         {
           "type": "identity",
@@ -2008,6 +2490,67 @@ window.SITE = {
           "colours": [
             "000000",
             "FFFFFF"
+          ]
+        },
+        {
+          "type": "section",
+          "label": "10  Next",
+          "title": "What I’d test first",
+          "sub": "Everything above is a hypothesis until players touch it."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Question",
+            "Method",
+            "It works if"
+          ],
+          "rows": [
+            [
+              "Can players act on a right before they see the Article?",
+              "Think-aloud sessions with first-time voters, five per round",
+              "They explain the right in their own words"
+            ],
+            [
+              "Does Guru get used, or skipped?",
+              "Prototype analytics: hints per card",
+              "Hints rise on hard cards and fall on replays"
+            ],
+            [
+              "Do streaks bring people back, or just guilt them?",
+              "Two-week diary study",
+              "They return without a reminder"
+            ],
+            [
+              "Is one language enough per region?",
+              "The same arc in three languages",
+              "Scores hold across languages"
+            ]
+          ]
+        },
+        {
+          "type": "sources",
+          "items": [
+            {
+              "label": "Vidhi Centre for Legal Policy, SARAL Survey Report, 2025",
+              "url": "https://saral.vidhilegalpolicy.in/docs/SARAL-Survey-Report-2025.pdf"
+            },
+            {
+              "label": "IAMAI and Kantar, Internet in India 2024",
+              "url": "https://www.iamai.in/sites/default/files/research/Kantar_%20IAMAI%20report_2024_.pdf"
+            },
+            {
+              "label": "World Economic Forum, India’s constitution is 30 times longer than America’s, 2019",
+              "url": "https://www.weforum.org/stories/2019/10/india-constitution-over-30-times-long-us/"
+            },
+            {
+              "label": "Sailer and Homner, The Gamification of Learning: a Meta-analysis, Educational Psychology Review, 2020",
+              "url": "https://link.springer.com/article/10.1007/s10648-019-09498-w"
+            },
+            {
+              "label": "Nyaaya, India’s laws explained",
+              "url": "https://nyaaya.org/"
+            }
           ]
         }
       ]

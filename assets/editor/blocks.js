@@ -192,6 +192,10 @@ window.EdBlocks = (() => {
     pipeline: { name: "Build pipeline" },
     bars: { name: "Bar chart" },
     split: { name: "Split bar" },
+    neevplay: { name: "Neev phone (playable)" },
+    table: { name: "Table" },
+    annotated: { name: "Annotated image" },
+    score: { name: "Score chart" },
   };
   T.image = { ...T.figure, name: "Image" };
 
