@@ -9,6 +9,7 @@
    then uploaded in the same commit as the text.
    ===================================================================== */
 (() => {
+  try { localStorage.setItem("skipgc", "t"); } catch {}   // this browser is yours: the visit counter (count.js) leaves it out
   const $ = s => document.querySelector(s);
   const B = window.EdBlocks, GH = window.EdGitHub;
   const frame = $("#canvas"), stage = $("#stage"), panel = $("#panel"), panelBody = $("#panelBody");
