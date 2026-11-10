@@ -319,15 +319,444 @@ window.SITE = {
         "Innovative Storytelling"
       ],
       "year": "",
-      "summary": "",
-      "cover": "",
+      "summary": "A kinetic sculpture that tells a myth about speed, knowledge, and what we trade for them",
+      "cover": "assets/projects/modern-myth/cover.jpg",
+      "coverStyle": "photo",
+      "coverAlt": "Render of the sculpture: a wooden base holding a glass wheel, a small viewing box, a cage of rods with a spiral of discs, a brass pentagon, an hourglass in a glass capsule and a three-weight pendulum",
+      "pageCover": false,
       "meta": {
-        "Role": "",
-        "Team": "",
-        "Tools": "",
-        "Duration": ""
+        "Form": "Kinetic sculpture, seven moving objects",
+        "Base": "150 × 55.5 × 15.5 cm",
+        "Stage": "Narrative framework · 3D model"
       },
-      "body": []
+      "body": [
+        {
+          "type": "statement",
+          "text": "In our relentless pursuit of unimaginable speed and unlimited knowledge, what essential parts of our humanity are we trading off?"
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "The question",
+              "title": "What do we trade for speed?",
+              "text": "Our times are technological awe, existential dread, frantic speed and a longing for lost meaning: the acceleration of AI, the attention economy, a Faustian bargain with data."
+            },
+            {
+              "kicker": "The response",
+              "title": "A myth you watch move",
+              "text": "Not an essay or a story, but a myth told by seven moving objects on one table. Each act is a motion, so the viewer feels the weight of the question instead of reading it."
+            },
+            {
+              "kicker": "Where it is",
+              "title": "Mapped and modelled",
+              "text": "The narrative, its philosophy, and every object’s motion, sound and material are mapped, and the sculpture is modelled to proportion. Mechanisms and electronics come next."
+            }
+          ]
+        },
+        {
+          "type": "annotated",
+          "src": "assets/projects/modern-myth/model.jpg",
+          "alt": "Three-quarter render of the full sculpture on its wooden base, with the seven objects numbered",
+          "pins": [
+            {
+              "x": 24,
+              "y": 36,
+              "label": "The Great Wheel",
+              "note": "Days of Stillness"
+            },
+            {
+              "x": 31.5,
+              "y": 62,
+              "label": "Mechanical TV",
+              "note": "The Vision"
+            },
+            {
+              "x": 45.5,
+              "y": 47,
+              "label": "The Spine",
+              "note": "The Journey"
+            },
+            {
+              "x": 58,
+              "y": 22,
+              "label": "The Deity",
+              "note": "The Arrival"
+            },
+            {
+              "x": 61.4,
+              "y": 62,
+              "label": "Soul Clock",
+              "note": "The Hidden Cost"
+            },
+            {
+              "x": 76.5,
+              "y": 65,
+              "label": "Tri-pendulum",
+              "note": "The Final Bargain"
+            },
+            {
+              "x": 72.6,
+              "y": 79,
+              "label": "The Void",
+              "note": "What’s Beyond?"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "label": "01  Myth",
+          "title": "Why a myth",
+          "sub": "Myth makes the abstract tangible and emotional. It speaks a universal, timeless language, simplifies complexity without reducing it, and invites participation, not just observation."
+        },
+        {
+          "type": "text",
+          "text": "A myth can take a complex anxiety, like our relationship with technology, and distil it into a timeless, emotionally resonant story. I didn’t want the sculpture to present an idea. I wanted it to invite the viewer into a mythic drama, so they feel the weight of the question, not just think about it."
+        },
+        {
+          "type": "text",
+          "size": "lead",
+          "text": "It begins in the days of wisdom, in the time of the slow churning of knowledge.\n\nBut one day, a man had a vision of the arrival of a deity in the human realm, a being who would grant all of humanity immense speed and unlimited knowledge. The man set out on a journey to find this deity.\n\nThe arrival took place, and suddenly the change began. Society started to shift at its very foundations, growing and transforming in the blink of an eye. But little did they know, this gift would come at a cost.\n\nThe price was to be paid particle by particle of the human soul. And the day came when the man was about to lose the last fragment of his being. With this, the bargain would be completed.\n\nNo one knows what happens after the final bargain is fulfilled."
+        },
+        {
+          "type": "section",
+          "label": "02  Score",
+          "title": "One arc, seven acts",
+          "sub": "Motion and sound climb together to the Arrival, then fall away, past where they began, into a different kind of stillness."
+        },
+        {
+          "type": "score",
+          "caption": "Kinetic–aural flow of the piece, act by act",
+          "phases": [
+            "Prelude",
+            "Days of Stillness",
+            "The Vision",
+            "The Journey",
+            "The Arrival",
+            "The Hidden Cost",
+            "The Final Bargain",
+            "What’s Beyond?"
+          ],
+          "under": [
+            "touch",
+            "Great Wheel",
+            "Mechanical TV",
+            "The Spine",
+            "The Deity",
+            "Soul Clock",
+            "Tri-pendulum",
+            "The Void"
+          ],
+          "lines": [
+            {
+              "label": "Sound",
+              "values": [
+                0.2,
+                0.3,
+                0.6,
+                0.8,
+                0.9,
+                0.5,
+                0.3,
+                0.1
+              ]
+            },
+            {
+              "label": "Motion",
+              "values": [
+                0.1,
+                0.2,
+                0.6,
+                0.8,
+                0.9,
+                0.4,
+                0.3,
+                0.05
+              ],
+              "style": "dashed"
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "label": "03  Objects",
+          "title": "Seven acts, seven motions",
+          "sub": "Each act has one object. Its motion, sound and material carry the act’s feeling."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Act",
+            "Object",
+            "Motion",
+            "Sound",
+            "Feeling"
+          ],
+          "rows": [
+            [
+              "1  Days of Stillness",
+              "The Great Wheel: acrylic disc on a wooden stand, engraved",
+              "Cyclic, slow, balanced, like the rotation of the earth",
+              "Harmonic drone, a low cyclic hum",
+              "Calm attention"
+            ],
+            [
+              "2  The Vision",
+              "Mechanical TV: 3D-printed disc in a wooden box, glowing screen",
+              "Fast; seems still, but moving",
+              "Tremolo, flickering between signal and noise",
+              "Curiosity, awakening"
+            ],
+            [
+              "3  The Journey",
+              "The Spine: iron rods, wood and a spiral of discs",
+              "Linear and upwards, interlinked, with friction",
+              "Rhythmic pulses, metallic sequences",
+              "Rising effort"
+            ],
+            [
+              "4  The Arrival",
+              "The Deity: etched brass descending on steel rods",
+              "Downwards, unstable, a false harmony",
+              "A chordal burst, overpressure",
+              "Awe, exhilaration"
+            ],
+            [
+              "5  The Hidden Cost",
+              "Soul Clock: an hourglass in a glass capsule",
+              "Particles falling, damped, resisting",
+              "Damped resonance, a breath-like decay",
+              "Weariness, quiet regret"
+            ],
+            [
+              "6  The Final Bargain",
+              "Tri-pendulum: brass, stone and acrylic weights",
+              "Out of sync, then a sudden stop",
+              "Asynchronous swings, then silence",
+              "Acceptance, surrender"
+            ],
+            [
+              "7  What’s Beyond?",
+              "The Void: a black pool of liquid with a mirror",
+              "Still, with faint vibrations in the liquid",
+              "Silence as sound",
+              "Transcendent calm"
+            ]
+          ]
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "Before act 1",
+              "title": "Prelude",
+              "text": "A touch to feel the engravings pulls the viewer from passive to active looking."
+            },
+            {
+              "kicker": "Act 1 → 2",
+              "title": "Disruption",
+              "text": "An LED behind opaque acrylic sparks, breaking the established rhythm."
+            },
+            {
+              "kicker": "Act 2 → 3",
+              "title": "Transference",
+              "text": "Linked motion runs through LEDs, passing energy from one element to the next."
+            },
+            {
+              "kicker": "Act 4 → 5",
+              "title": "Fatigue",
+              "text": "A chamber changes light as the motion resists and loses amplitude."
+            },
+            {
+              "kicker": "Act 5 → 6",
+              "title": "Yielding",
+              "text": "Two motions come to rest together while a low tone dissolves into silence."
+            },
+            {
+              "kicker": "Act 6 → 7",
+              "title": "Aftermath",
+              "text": "A feather vibrates: the small residue of energy that lingers."
+            }
+          ]
+        },
+        {
+          "type": "figure",
+          "src": "assets/projects/modern-myth/glyphs.png",
+          "alt": "A row of nine hand-drawn glyphs: wheels with spokes, a T, crossed shapes, a diamond, an X, a bar and an infinity loop",
+          "caption": "Glyphs for the Great Wheel’s engravings, an ancient truth to be felt by hand",
+          "style": "diagram",
+          "size": "wide"
+        },
+        {
+          "type": "section",
+          "label": "04  Decisions",
+          "title": "Three forms for every act",
+          "sub": "Each act was translated into three physical options. The one chosen had to carry the story and still be buildable."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Act",
+            "Chosen",
+            "Also considered",
+            "Why"
+          ],
+          "rows": [
+            [
+              "Days of Stillness",
+              "One wheel of engraved acrylic on a wooden stand",
+              "Three interlinked concentric wheels; circles turning on a larger circle",
+              "Making fidelity and sensory freedom"
+            ],
+            [
+              "The Vision",
+              "A mechanical TV",
+              "A low-resolution screen; a mutoscope",
+              "Its link to media archaeology"
+            ],
+            [
+              "The Journey",
+              "A spine of circles, motion carried from bottom to top",
+              "LEDs lighting in sequence; magnetic braking with changing polarity",
+              "Organ projection, and the metaphor of effort"
+            ],
+            [
+              "The Arrival",
+              "A brass structure descending",
+              "A brass wheel turning at irregular speed; a breathing mechanism",
+              "It carries the narrative most directly"
+            ],
+            [
+              "The Hidden Cost",
+              "An hourglass in a glass capsule, showing particles being consumed",
+              "A rail of marbles dropping one by one; an eroding tower",
+              "Its visual appeal, and its link to time"
+            ],
+            [
+              "The Final Bargain",
+              "A three-pendulum system",
+              "One pendulum stopping at random; criss-crossed strings",
+              "It explains the whole narrative: a shared surrender"
+            ],
+            [
+              "What’s Beyond?",
+              "A black starch pond that vibrates",
+              "A reflective surface turning pitch black; a film that goes opaque under infrared",
+              "Fidelity and feasibility"
+            ]
+          ]
+        },
+        {
+          "type": "section",
+          "label": "05  Thinking",
+          "title": "The question behind each act"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Act",
+            "Question",
+            "Thinking with"
+          ],
+          "rows": [
+            [
+              "Days of Stillness",
+              "What is being before mediation, before the sign and the machine?",
+              "Heidegger, Merleau-Ponty, Eliade"
+            ],
+            [
+              "The Vision",
+              "When the first sign appears, what rupture happens?",
+              "Saussure, Peirce, McLuhan, Ihde"
+            ],
+            [
+              "The Journey",
+              "How does the pursuit of knowledge begin?",
+              "Ernst Kapp, Ihde, Merleau-Ponty, Benjamin"
+            ],
+            [
+              "The Arrival",
+              "What illusion of mastery does acceleration produce?",
+              "Heidegger’s Enframing, Benjamin’s aura, McLuhan"
+            ],
+            [
+              "The Hidden Cost",
+              "What is the ontological price of representation and speed?",
+              "Heidegger, Galit Wellner, Rosenberger, Malina"
+            ],
+            [
+              "The Final Bargain",
+              "Can surrender be a form of intelligence?",
+              "Merleau-Ponty’s chiasm, Ihde, South Asian metaphysics"
+            ],
+            [
+              "What’s Beyond?",
+              "What remains when mediation and motion end?",
+              "Eliade’s eternal return, Heidegger’s dwelling, Peirce"
+            ]
+          ]
+        },
+        {
+          "type": "section",
+          "label": "06  Model",
+          "title": "Built to one proportion",
+          "sub": "The Great Wheel is the 1.0× baseline. The other objects follow the golden ratio, and doubling is read as an octave shift."
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "value": "150 × 55.5",
+              "label": "the base, in cm, 15.5 cm deep",
+              "source": ""
+            },
+            {
+              "value": "1 : 1.618",
+              "label": "the ratio between objects",
+              "source": ""
+            },
+            {
+              "value": "1.5×",
+              "label": "the Deity, the tallest object",
+              "source": ""
+            }
+          ]
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "src": "assets/projects/modern-myth/low.jpg",
+              "alt": "Low front render: the wheel, viewing box, rod cage with spiral, brass pentagon, hourglass and pendulum",
+              "style": "photo"
+            },
+            {
+              "src": "assets/projects/modern-myth/above.jpg",
+              "alt": "Render from above at three-quarters, showing the spiral of discs inside the rod cage",
+              "style": "photo"
+            }
+          ]
+        },
+        {
+          "type": "figure",
+          "src": "assets/projects/modern-myth/front.jpg",
+          "alt": "Front elevation of the sculpture on a black table against a grey wall",
+          "caption": "Front elevation",
+          "style": "photo",
+          "size": "full"
+        },
+        {
+          "type": "section",
+          "label": "07  Next",
+          "title": "What’s next"
+        },
+        {
+          "type": "text",
+          "text": "The later stages of the framework are still open: dimensional and experience mapping, sketches for every element, and the mechanics and electronics behind each motion. The plan is to prototype early, with small material and motion tests for each object, rather than waiting for the full map."
+        }
+      ]
     },
     {
       "slug": "binni",

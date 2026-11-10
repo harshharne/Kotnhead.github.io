@@ -32,6 +32,10 @@
      plaques   { items: [{ event, name, line, target }] }  cards that reveal a line on hover
      fluke     { at, event, quiet, back, outcomes: [] }    a small event and what it becomes
      pipeline  {}                                      the build pipeline (Playing Against Chance)
+     annotated { src, alt, pins: [{ x, y, label, note }], caption }  an image with numbered pins and a key (x, y in %)
+     score     { phases: [], under: [], lines: [{ label, values: [], style }], caption }  qualities rising and falling across acts
+     table     { head: [], rows: [[...]] }              a simple table; first column in bold; stacks on phones
+     text      { text, size: "lead" }                  size "lead" sets it larger
    Anything decided by random.org is drawn in the accent: violet is always chance.
    figure style "dark" puts an image on a black panel.
    A project can set pageCover: false to keep its cover on the tile only.
@@ -52,7 +56,7 @@
 
   const R = {
     section: b => `<header class="cs-section"><span class="cs-label">${esc(b.label)}</span><h2 class="cs-title">${esc(b.title)}</h2>${b.sub ? `<p class="cs-sub">${esc(b.sub)}</p>` : ""}</header>`,
-    text: b => `<div class="cs-text">${paras(b.text)}</div>`,
+    text: b => `<div class="cs-text${b.size === "lead" ? " is-lead" : ""}">${paras(b.text)}</div>`,
     question: b => `<p class="cs-question">${esc(b.text)}</p>`,
     stats: b => `<div class="cs-stats">${b.items.map(s => `
       <div class="cs-stat"><span class="cs-stat-value">${esc(s.value)}</span><span class="cs-stat-label">${esc(s.label)}</span><span class="cs-source">${esc(s.source)}</span></div>`).join("")}</div>`,
@@ -106,6 +110,14 @@
       <div class="cs-plaque" role="listitem" tabindex="0"><span class="cs-kicker">${esc(c.event)}</span><h3>${esc(c.name)}</h3><p>${esc(c.line)}</p><span class="cs-plaque-target">Throw ${esc(c.target)}</span></div>`).join("")}</div><p class="cs-plaque-hint">Hover a card to reach for it.</p>`,
     fluke: b => fluke(b),
     pipeline: b => pipeline(b),
+    annotated: b => `<figure class="cs-figure cs-annot is-photo size-${b.size || "full"}">
+      <div class="cs-figure-media"><img src="${esc(b.src)}" alt="${esc(b.alt)}" loading="lazy">${(b.pins || []).map((p, k) => `<span class="cs-pin" style="left:${+p.x}%;top:${+p.y}%" aria-hidden="true">${k + 1}</span>`).join("")}</div>
+      <ol class="cs-annot-key">${(b.pins || []).map(p => `<li><b>${esc(p.label)}</b>${p.note ? `<span>${esc(p.note)}</span>` : ""}</li>`).join("")}</ol>
+      ${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ""}</figure>`,
+    score: b => score(b),
+    table: b => `<div class="cs-table" style="--cols:${b.head.length}" role="table">
+      <div class="cs-tr cs-th" role="row">${b.head.map(h => `<span role="columnheader">${esc(h)}</span>`).join("")}</div>
+      ${b.rows.map(r => `<div class="cs-tr" role="row">${b.head.map((h, k) => `<span role="cell" data-h="${esc(h)}">${k === 0 ? `<b>${esc(r[k])}</b>` : esc(r[k] ?? "")}</span>`).join("")}</div>`).join("")}</div>`,
     sources: b => `<div class="cs-sources"><h3>Sources</h3><ol>${b.items.map(s => `<li>${s.url ? `<a class="link" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ol></div>`,
   };
   const render = b => (R[b.type] ? R[b.type](b) : "");
@@ -340,6 +352,22 @@
       <div><span class="cs-kicker">Screen</span><p>Avatar in front, world behind, crossfades, one thing at a time. Every timing set from a control panel.</p></div>
       <div><span class="cs-kicker">Planned</span><p>A story engine (an LLM writes the prompts) and a live voice for the Bookkeeper.</p></div></div>`;
     return `<figure class="cs-dg cs-pipeline"><svg class="cs-dg-svg" viewBox="0 0 1000 ${py + H + 10}" role="img" aria-label="${esc(b.alt || "")}">${defs}${s}</svg>${listed}</figure>`;
+  }
+
+  /* ---------- score: how two qualities rise and fall across acts ----------
+     { phases: [], under: [], lines: [{ label, values: [0..1], style: "solid"|"dashed" }], caption } */
+  function score(b) {
+    const n = b.phases.length, X = k => 70 + k * (880 / (n - 1)), Y = v => 40 + (1 - v) * 240;
+    let s = [0, 0.5, 1].map(v => `<path class="dg-path" d="M50,${Y(v)} L970,${Y(v)}" stroke-dasharray="${v ? "2 5" : ""}"/><text class="dg-s" x="40" y="${Y(v) + 4}" text-anchor="end">${v === 1 ? "high" : v ? "" : "low"}</text>`).join("");
+    const [a, c] = b.lines;
+    if (a && c) s += `<path class="cs-score-band" d="M${a.values.map((v, k) => `${X(k)},${Y(v)}`).join(" L")} L${c.values.map((v, k) => `${X(k)},${Y(v)}`).reverse().join(" L")} Z"/>`;
+    b.lines.forEach((l, i) => {
+      s += `<path class="cs-score-line${l.style === "dashed" ? " is-dashed" : ""}" d="M${l.values.map((v, k) => `${X(k)},${Y(v)}`).join(" L")}"/>`;
+      s += l.values.map((v, k) => `<circle class="cs-score-dot${i ? " is-2" : ""}" cx="${X(k)}" cy="${Y(v)}" r="${i ? 4 : 5}"/>`).join("");
+    });
+    s += b.phases.map((p, k) => `<path class="dg-path" d="M${X(k)},285 L${X(k)},292"/>` + lines(X(k), 314, wrap(p, 12), "dg-i", "middle", 19) + (b.under && b.under[k] ? `<text class="dg-s" x="${X(k)}" y="${314 + 19 * wrap(p, 12).split("\n").length + 6}" text-anchor="middle">${esc(b.under[k])}</text>` : "")).join("");
+    const key = `<ul class="cs-score-key">${b.lines.map(l => `<li><i class="${l.style === "dashed" ? "is-dashed" : ""}"></i>${esc(l.label)}</li>`).join("")}</ul>`;
+    return `<figure class="cs-dg cs-score"><div class="cs-score-scroll"><svg viewBox="0 0 1000 400" role="img" aria-label="${esc(b.caption || "Score")}">${s}</svg></div>${key}${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ""}</figure>`;
   }
 
   /* ---------- page parts (the editor uses these too) ---------- */
