@@ -140,7 +140,7 @@
       <script type="application/json" data-nv-data>${JSON.stringify(b.arcs || []).replace(/</g, "\\u003c")}</script>
     </div>`;
   const fresh = () => ({ xp: 0, crit: 0, mom: 3, learnt: [], done: [] });
-  const bar = (st, left = `<span class="nv-brand"><img src="assets/projects/neev/icon.jpg" alt="">Neev</span>`) => `
+  const bar = (st, left = `<span class="nv-brand"><img src="assets/projects/neev/logo.png" alt="">Neev</span>`) => `
     <div class="nv-top">${left}<span class="nv-pills"><span class="nv-pill" title="Momentum points">${BOLT}<span class="sr-only">Momentum </span>${st.mom}</span><span class="nv-pill" title="Neevsense">◆<span class="sr-only"> Neevsense</span> ${score(st)}</span></span></div>`;
   const score = st => st.xp + st.crit * 2;
   const home = (b, st) => `
