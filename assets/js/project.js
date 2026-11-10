@@ -40,6 +40,7 @@
    figure style "dark" puts an image on a black panel.
    A project can set pageCover: false to keep its cover on the tile only.
      list      { title, items: [] }
+     photos    { items: [{ src, alt, caption, date, r }] }  a row of photos at their own shapes
      sources   { items: [{ label, url }] }
    Needs content.js and dots.js.
    ===================================================================== */
@@ -73,6 +74,7 @@
     figure: b => figure(b),
     image: b => figure(b),
     video: b => video(b),
+    photos: b => photos(b),
     pair: b => `<div class="cs-pair">${b.items.map(f => figure({ ...f, size: "fill" })).join("")}</div>`,
     side: b => `<div class="cs-side-by-side${b.flip ? " flip" : ""}">${figure({ ...b.figure, size: "fill" })}<div class="cs-side-text">${b.blocks.map(render).join("")}</div></div>`,
     lotus: b => lotus(b),
@@ -121,6 +123,15 @@
     sources: b => `<div class="cs-sources"><h3>Sources</h3><ol>${b.items.map(s => `<li>${s.url ? `<a class="link" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ol></div>`,
   };
   const render = b => (R[b.type] ? R[b.type](b) : "");
+
+  /* ---------- photos: a row of photos at their own shapes, one shared height ----------
+     items [{ src, alt, caption, date, r }]; r is width ÷ height (read from the image when it loads).
+     The row fills the width but never gets taller than about a screen. */
+  function photos(b) {
+    const items = b.items || [], sum = items.reduce((t, f) => t + (+f.r || 1), 0);
+    return `<div class="cs-photos${items.length > 1 ? " is-row" : ""}" style="--sum:${sum};--n:${items.length}">${items.map(f => `
+      <figure class="cs-photo" style="flex-grow:${+f.r || 1}"><img src="${esc(f.src)}" alt="${esc(f.alt)}" loading="lazy" onload="this.parentNode.style.flexGrow=this.naturalWidth/this.naturalHeight">${f.caption || f.date ? `<figcaption>${f.caption ? `<span>${esc(f.caption)}</span>` : ""}${f.date ? `<span class="cs-photo-date">${esc(f.date)}</span>` : ""}</figcaption>` : ""}</figure>`).join("")}</div>`;
+  }
 
   /* ---------- video: YouTube, Vimeo or an .mp4 file ---------- */
   function video(b) {

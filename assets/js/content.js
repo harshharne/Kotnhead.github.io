@@ -7,8 +7,12 @@
      slug, title, year, summary, tags [], featured, hidden,
      cover, coverStyle "photo"|"diagram", coverAlt, pageCover false,
      meta { label: value }, body [ blocks ]  (block types: assets/js/project.js)
-   notes     title, date "2026-11-05", tags [], related (a project slug),
-             url (makes it a link note), body (blank line = new paragraph)
+   notes     title, date "2026-11-05" (or "2024-12", or "2024"), tags [],
+             related (a project slug), url (makes it a link note),
+             body (blank line = new paragraph; opens in place), or
+             slug + summary + blocks [ ] (opens on its own page, note.html)
+   playground  group, title, brand, kind, text, images [{ src, alt, r }]
+             (r = width ÷ height; the page reads it from the image too)
    ===================================================================== */
 window.SITE = {
   "projects": [
@@ -2011,12 +2015,218 @@ window.SITE = {
   ],
   "notes": [
     {
+      "slug": "butterflies-in-my-memories",
+      "title": "Butterflies in my memories",
+      "date": "2024",
+      "tags": [
+        "Photo essay"
+      ],
+      "summary": "A photo essay",
+      "related": "",
+      "url": "",
+      "body": "",
+      "blocks": [
+        {
+          "type": "text",
+          "size": "lead",
+          "text": "Every time I close my eyes, I can feel the projection of dispersed rays of light over the retina through my eyelids, causing a tinkling yet deeply nostalgic feeling. Maybe the origins of this tinkling lie in certain butterflies from my past, which have long gone. But though their appearance lasted only for split seconds compared to the quantum of time I have spent on this planet, some of their flutters have resulted in a hurricane of change in my life."
+        },
+        {
+          "type": "text",
+          "text": "These images are not only intended to capture something from the past but also the spirit of the years lived and the moments that came by, just like a butterfly. This photo essay contains images from my travels, moments of pure daydreaming, and some from the stories told by nani in my childhood, a humble pursuit to capture these butterflies from my memories."
+        },
+        {
+          "type": "photos",
+          "items": [
+            {
+              "src": "assets/notes/butterflies/intro.jpg",
+              "alt": "Close-up of a dark surface scattered with violet specks of light",
+              "caption": "",
+              "date": "",
+              "r": 0.636
+            }
+          ]
+        },
+        {
+          "type": "photos",
+          "items": [
+            {
+              "src": "assets/notes/butterflies/curtains.jpg",
+              "alt": "A blurred landscape at dusk through a train window, the edge of a curtain streaking across it",
+              "caption": "The curtains were mixing with the glass panel as if my physical body was touched by the very feeling of a journey.",
+              "date": "Sept 2024",
+              "r": 1
+            },
+            {
+              "src": "assets/notes/butterflies/north-star.jpg",
+              "alt": "A deep blue sky over a thin orange horizon",
+              "caption": "My search for the north star.",
+              "date": "Jan 2024",
+              "r": 1.565
+            }
+          ]
+        },
+        {
+          "type": "photos",
+          "items": [
+            {
+              "src": "assets/notes/butterflies/balloons.jpg",
+              "alt": "Blue and green balloons floating on dark water, reflected beneath",
+              "caption": "I feel as a child we are never alone.",
+              "date": "Dec 2024",
+              "r": 0.765
+            },
+            {
+              "src": "assets/notes/butterflies/puddle.jpg",
+              "alt": "Black and white: a child stepping through a puddle, her reflection stretched upside down in the water",
+              "caption": "Reflection of joy has just lost into the shadows.",
+              "date": "Sept 2024",
+              "r": 1.092
+            }
+          ]
+        },
+        {
+          "type": "photos",
+          "items": [
+            {
+              "src": "assets/notes/butterflies/water.jpg",
+              "alt": "Rippled grey-blue water",
+              "caption": "Always felt like scooping out the water and eating it.",
+              "date": "Sept 2024",
+              "r": 1.685
+            },
+            {
+              "src": "assets/notes/butterflies/boats.jpg",
+              "alt": "Small coloured paper boats floating on green water",
+              "caption": "There are no more rivers over the roads for my boats now.",
+              "date": "Dec 2024",
+              "r": 0.785
+            }
+          ]
+        },
+        {
+          "type": "photos",
+          "items": [
+            {
+              "src": "assets/notes/butterflies/fire.jpg",
+              "alt": "Two people on a motorbike, silhouetted against a bonfire at night",
+              "caption": "Evoking the feeling of the forgotten tale of my childhood.",
+              "date": "March 2024",
+              "r": 0.654
+            },
+            {
+              "src": "assets/notes/butterflies/leaves.jpg",
+              "alt": "Sunlit leaves against a pale sky, blurred with movement",
+              "caption": "Always wanted to capture winds and clouds and put them in a jar.",
+              "date": "Oct 2024",
+              "r": 0.623
+            },
+            {
+              "src": "assets/notes/butterflies/bicycle.jpg",
+              "alt": "A small red bicycle on a wet courtyard among potted plants, its headlight glowing",
+              "caption": "That split seconds of blindness while riding the bicycle was addictive.",
+              "date": "Nov 2024",
+              "r": 0.653
+            }
+          ]
+        }
+      ]
+    },
+    {
       "title": "Mind–Body Disconnect",
       "date": "",
       "tags": [],
       "related": "",
       "url": "",
       "body": ""
+    }
+  ],
+  "playground": [
+    {
+      "group": "Advertising",
+      "title": "Tech Tuesday",
+      "brand": "vivo X100 Series",
+      "kind": "Social series",
+      "text": "“Unlock the next level of innovation.” A weekly post that opens the phone up one part at a time: the battery and charging, the camera, the chipset, the antennas.",
+      "images": [
+        {
+          "src": "assets/playground/advertising/vivo.jpg",
+          "alt": "A grid of dark social posts: a glowing Tech Tuesday title card, then line drawings of the phone’s battery, camera lenses, chipset and antennas",
+          "r": 1.77
+        }
+      ]
+    },
+    {
+      "group": "Advertising",
+      "title": "Reimagine the Balance",
+      "brand": "New Balance",
+      "kind": "Print campaign",
+      "text": "Built on photographs of soldiers playing football. “Let’s replace the blood and grim with sweat and smiles.”",
+      "images": [
+        {
+          "src": "assets/playground/advertising/new-balance.jpg",
+          "alt": "Three New Balance ads in sepia: soldiers running through smoke under the line Reimagine the Balance, and two photographs of soldiers playing football",
+          "r": 1.571
+        }
+      ]
+    },
+    {
+      "group": "Advertising",
+      "title": "Your Personal Cloud",
+      "brand": "Watergen",
+      "kind": "Poster series",
+      "text": "Two posters sell the machine as a cloud of your own. Three set it against the numbers on water scarcity. “Let’s prove the data wrong.”",
+      "images": [
+        {
+          "src": "assets/playground/advertising/watergen-1.jpg",
+          "alt": "Blue poster with a single cloud: Get yourself a cloud, ranging from 200 to 6,000 litres a day",
+          "r": 0.561
+        },
+        {
+          "src": "assets/playground/advertising/watergen-2.jpg",
+          "alt": "Blue poster with a cloud above a tower block: Get your residence its own cloud",
+          "r": 0.561
+        },
+        {
+          "src": "assets/playground/advertising/watergen-3.jpg",
+          "alt": "Poster over a dusty road at sunset: Nearly 4 billion people will be living in areas with persistent water scarcity",
+          "r": 0.562
+        },
+        {
+          "src": "assets/playground/advertising/watergen-4.jpg",
+          "alt": "Poster over dry pine needles: 40% of India’s population by 2030 will not have access to basic drinking water",
+          "r": 0.561
+        },
+        {
+          "src": "assets/playground/advertising/watergen-5.jpg",
+          "alt": "Poster over cracked earth: 85% chance of persistent drought in southwestern USA by 2050",
+          "r": 0.562
+        }
+      ]
+    },
+    {
+      "group": "Advertising",
+      "title": "Time is with us",
+      "brand": "Christopher Ward",
+      "kind": "Print campaign",
+      "text": "Each headline is set as the hands of a clock, telling its own time: authentic intelligence, a generation that woke up at 89 seconds to midnight, seven passions.",
+      "images": [
+        {
+          "src": "assets/playground/advertising/christopher-ward-1.jpg",
+          "alt": "White poster: the words Authentic Intelligence set as clock hands. We believe that in the age of AI, your authentic intelligence will win. Time is with us.",
+          "r": 0.731
+        },
+        {
+          "src": "assets/playground/advertising/christopher-ward-2.jpg",
+          "alt": "White poster: Generation that woke up at 89 seconds to midnight, set as clock hands with 89 seconds in red. Time is with us.",
+          "r": 0.731
+        },
+        {
+          "src": "assets/playground/advertising/christopher-ward-3.jpg",
+          "alt": "White poster: It’s great to have 7 passions, set as clock hands. Time is with us.",
+          "r": 0.731
+        }
+      ]
     }
   ]
 };

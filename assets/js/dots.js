@@ -17,10 +17,12 @@
 
     const draw = () => {
       const cs = getComputedStyle(el);
-      const p = parseFloat(cs.fontSize) / GH;
+      let p = parseFloat(cs.fontSize) / GH;
       const avail = el.dataset.dots === "nowrap" ? Infinity : (el.parentElement.clientWidth || 600);
       const lines = wrap(text, Math.max(1, Math.floor(avail / p)));
-      const w = Math.max(...lines.map(cols)) * p;
+      const widest = Math.max(...lines.map(cols));
+      if (widest * p > avail) p = avail / widest;   // one word longer than the line: draw it smaller rather than spill
+      const w = widest * p;
       const h = lines.length * LINE * p - (LINE - GH) * p;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       c.style.width = w + "px"; c.style.height = h + "px";

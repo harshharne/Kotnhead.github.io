@@ -67,6 +67,16 @@ window.EdBlocks = (() => {
       inline: [["figcaption", "items.*.caption"]],
       make: () => ({ type: "pair", items: [{ src: "", alt: "", caption: "", style: "photo" }, { src: "", alt: "", caption: "", style: "photo" }] }),
     },
+    photos: {
+      name: "Photo row", hint: "Photos side by side at their own shapes",
+      fields: [{ key: "items", kind: "items", label: "Photos", one: "Photo", fields: [
+        { key: "src", kind: "image", label: "Photo" },
+        { key: "alt", kind: "text", label: "Alt text", help: "Describe the photo for people who can’t see it." },
+        { key: "caption", kind: "text", label: "Caption" },
+        { key: "date", kind: "text", label: "Date", help: "e.g. Sept 2024" },
+      ], make: () => ({ src: "", alt: "", caption: "", date: "" }) }],
+      make: () => ({ type: "photos", items: [{ src: "", alt: "", caption: "", date: "" }, { src: "", alt: "", caption: "", date: "" }] }),
+    },
     video: {
       name: "Video", hint: "YouTube, Vimeo or an .mp4",
       fields: [
@@ -187,7 +197,7 @@ window.EdBlocks = (() => {
 
   const PALETTE = [
     ["Writing", ["section", "text", "statement", "quote", "question", "list"]],
-    ["Media", ["figure", "pair", "video"]],
+    ["Media", ["figure", "pair", "photos", "video"]],
     ["Structure", ["cards", "stats", "compare", "sources"]],
     ["Diagrams", ["bubbles", "stairs", "evolution", "plaques"]],
   ];
