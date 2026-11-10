@@ -564,7 +564,7 @@
       list.appendChild(r);
     });
     box.appendChild(list);
-    box.querySelectorAll("input").forEach(x => Object.assign(x.style, { padding: "8px 10px", border: "1px solid var(--rule)", borderRadius: "8px", font: "inherit", background: "#fbfaf7", width: "100%" }));
+    box.querySelectorAll("input").forEach(x => Object.assign(x.style, { padding: "8px 10px", border: "1px solid var(--rule)", borderRadius: "8px", font: "inherit", background: "#fcfcfb", width: "100%" }));
     return box;
   }
 

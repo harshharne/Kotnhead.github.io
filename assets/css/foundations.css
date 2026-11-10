@@ -18,19 +18,19 @@
   color-scheme: light;
 
   /* ---------- Colour ----------
-     One light theme: matte off-white paper, warm near-black ink.
+     One light theme: near-white neutral paper, near-black ink.
      Neutrals carry everything; violet is reserved for four things only:
      the cursor, the active marker, resolved/found items, and the
      keyboard focus ring. Contrast ratios are against --bg. */
-  --bg:        #eeede8;   /* page — matte off-white, low chroma, no glare */
-  --surface:   #e5e3dd;   /* tiles, image wells — a shade darker, not white cards */
-  --surface-2: #dcdad3;   /* hover on surfaces */
-  --text:      #1b1a17;   /* primary text, lit dots — 14.9:1 */
-  --text-2:    #4a4842;   /* secondary text, body copy — 7.8:1 */
-  --muted:     #65635c;   /* labels, meta — 5.1:1 (4.7:1 on surface) */
-  --faint:     #bab8b0;   /* non-text only: unlit dots, disabled */
-  --rule:      rgba(27, 26, 23, 0.12);   /* hairlines */
-  --accent:    #5e5297;   /* matte violet: dusty, low saturation — 5.7:1; white on it 6.7:1 */
+  --bg:        #f5f5f3;   /* page — near-white, neutral (no yellow), not pure white */
+  --surface:   #eaeae7;   /* tiles, image wells — a shade darker, not white cards */
+  --surface-2: #e0e0dc;   /* hover on surfaces */
+  --text:      #1a1a19;   /* primary text, lit dots — 16:1 */
+  --text-2:    #474745;   /* secondary text, body copy — 8.5:1 */
+  --muted:     #62625f;   /* labels, meta — 5.6:1 (5.1:1 on surface) */
+  --faint:     #b9b9b5;   /* non-text only: unlit dots, disabled */
+  --rule:      rgba(26, 26, 25, 0.12);   /* hairlines */
+  --accent:    #5e5297;   /* matte violet: dusty, low saturation — 6.1:1; white on it 6.7:1 */
   --accent-soft: rgba(94, 82, 151, 0.10);  /* tints: selection wash, grid overlays */
   --grain:     0.05;      /* strength of the matte paper grain; 0 turns it off */
 
