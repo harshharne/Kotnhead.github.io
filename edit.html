@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Editor · Harshwardhan Harne</title>
+  <meta name="theme-color" content="#eeede8">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/css/foundations.css">
+  <link rel="stylesheet" href="assets/editor/editor.css">
+</head>
+<body class="ed">
+  <!-- The case study editor. Not linked from the site. Publishing needs your GitHub key (Settings). -->
+  <header class="ed-top">
+    <div class="ed-top-left">
+      <label class="ed-select"><span class="sr-only">Project</span><select id="pick" aria-label="Project"></select></label>
+      <button class="ed-btn ghost" id="newProject" title="New project">New</button>
+    </div>
+    <div class="ed-top-mid">
+      <div class="ed-seg" role="group" aria-label="Preview width">
+        <button class="ed-seg-btn" data-view="desktop" aria-pressed="true">Desktop</button>
+        <button class="ed-seg-btn" data-view="phone" aria-pressed="false">Phone</button>
+      </div>
+      <button class="ed-icon" id="undo" title="Undo (Ctrl/Cmd+Z)" aria-label="Undo"><svg viewBox="0 0 20 20"><path d="M7 5 3 9l4 4M3 9h9a5 5 0 0 1 0 10h-2"/></svg></button>
+      <button class="ed-icon" id="redo" title="Redo (Shift+Ctrl/Cmd+Z)" aria-label="Redo"><svg viewBox="0 0 20 20"><path d="m13 5 4 4-4 4M17 9H8a5 5 0 0 0 0 10h2"/></svg></button>
+    </div>
+    <div class="ed-top-right">
+      <span class="ed-status" id="status" aria-live="polite"></span>
+      <button class="ed-icon" id="openSettings" title="Publishing key" aria-label="Publishing key"><svg viewBox="0 0 20 20"><circle cx="6.5" cy="13.5" r="3.5"/><path d="m9 11 8-8M14 6l2 2M12 8l1.5 1.5"/></svg></button>
+      <a class="ed-btn ghost" id="viewLive" target="_blank" rel="noopener">View</a>
+      <button class="ed-btn" id="publish" disabled>Publish</button>
+    </div>
+  </header>
+
+  <div class="ed-main">
+    <div class="ed-stage" id="stage">
+      <iframe id="canvas" class="ed-frame" src="assets/editor/canvas.html" title="Case study canvas"></iframe>
+    </div>
+    <aside class="ed-panel" id="panel" aria-label="Block settings">
+      <button class="ed-sheet-grip" id="sheetClose" aria-label="Close settings"><span></span></button>
+      <div class="ed-panel-body" id="panelBody"></div>
+    </aside>
+  </div>
+
+  <!-- add a block -->
+  <dialog class="ed-dialog" id="palette">
+    <form method="dialog" class="ed-dialog-in">
+      <header><h2>Add a block</h2><button class="ed-icon" value="cancel" aria-label="Close"><svg viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button></header>
+      <div class="ed-palette" id="paletteList"></div>
+    </form>
+  </dialog>
+
+  <!-- settings: GitHub key -->
+  <dialog class="ed-dialog" id="settings">
+    <form method="dialog" class="ed-dialog-in" id="settingsForm">
+      <header><h2>Publishing</h2><button class="ed-icon" value="cancel" aria-label="Close"><svg viewBox="0 0 20 20"><path d="m5 5 10 10M15 5 5 15"/></svg></button></header>
+      <p class="ed-help">Publish saves your changes straight to your GitHub repo. It needs a key that can only touch that one repo.</p>
+      <ol class="ed-steps">
+        <li>On GitHub, open <a class="link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Settings → Developer settings → Fine-grained tokens → Generate new token</a>.</li>
+        <li>Name it “Portfolio editor”, and pick an expiry (a year is fine).</li>
+        <li>Repository access: <b>Only select repositories</b> → your portfolio repo.</li>
+        <li>Permissions → Repository → <b>Contents: Read and write</b>. Nothing else.</li>
+        <li>Generate, copy it, and paste it below. It stays on this device only.</li>
+      </ol>
+      <label class="ed-field"><span>Key</span><input type="password" id="ghToken" autocomplete="off" spellcheck="false" placeholder="github_pat_…"></label>
+      <div class="ed-row2">
+        <label class="ed-field"><span>Owner</span><input id="ghOwner" spellcheck="false"></label>
+        <label class="ed-field"><span>Repo</span><input id="ghRepo" spellcheck="false"></label>
+      </div>
+      <label class="ed-field"><span>Branch <i>(blank = the repo’s default)</i></span><input id="ghBranch" spellcheck="false" placeholder="main"></label>
+      <p class="ed-help" id="ghCheck"></p>
+      <footer><button class="ed-btn ghost" type="button" id="ghForget">Forget key</button><button class="ed-btn ghost" type="button" id="ghTest">Check</button><button class="ed-btn" value="save">Save</button></footer>
+    </form>
+  </dialog>
+
+  <div class="ed-toasts" id="toasts" aria-live="polite"></div>
+  <input type="file" id="filePick" accept="image/*,video/mp4,video/webm" hidden>
+
+  <script src="assets/editor/blocks.js"></script>
+  <script src="assets/editor/github.js"></script>
+  <script src="assets/editor/editor.js"></script>
+</body>
+</html>

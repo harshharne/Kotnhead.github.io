@@ -12,7 +12,8 @@
      bars      { question, total, rows: [[label, n]], note }
      split     { question, total, rows: [[label, n]] } one bar split into parts
      cards     { items: [{ title, text }], cols }     short labelled statements
-     figure    { src, alt, caption, style: "diagram"|"photo", size: "full"|"wide"|"half" }
+     figure    { src, alt, caption, style: "diagram"|"photo"|"dark", size: "full"|"wide"|"half" }
+     video     { src, caption, size, loop }       YouTube or Vimeo link, or an .mp4 (loop: plays silently on repeat)
      side      { figure: {...}, blocks: [...], flip }  a figure beside text
      pair      { items: [figure, figure] }             two figures side by side, equal height
      lotus     { center, petals: [{ label, note }] }   the UX lotus diagram
@@ -39,24 +40,8 @@
    Needs content.js and dots.js.
    ===================================================================== */
 (() => {
-  const S = window.SITE; if (!S) return;
-  const list = S.projects.filter(p => !p.hidden);
-  const slug = new URLSearchParams(location.search).get("p") || window.PROJECT_SLUG;   // PROJECT_SLUG: lets a saved single-file preview open one project
-  const i = list.findIndex(p => p.slug === slug);
-  const root = document.querySelector("[data-project]");
-  if (!root) return;
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const paras = t => String(t || "").split(/\n\s*\n/).filter(x => x.trim()).map(p => `<p>${esc(p.trim())}</p>`).join("");
-
-  if (i < 0) {
-    root.innerHTML = `<section class="page-intro"><h1 class="dots-xl" data-dots>Not found</h1></section>
-      <p class="placeholder-line">That project isn’t here. <a class="link" href="work.html">See all work</a>.</p>`;
-    if (window.Dots) window.Dots.run(root);
-    return;
-  }
-
-  const p = list[i], next = list[(i + 1) % list.length];
-  document.title = `${p.title} · Harshwardhan Harne`;
 
   /* ---------- blocks ---------- */
   const figure = f => `
@@ -82,6 +67,8 @@
       <div class="cs-card${c.chance ? " is-chance" : ""}">${c.kicker ? `<span class="cs-kicker">${esc(c.kicker)}</span>` : ""}<h3>${esc(c.title)}</h3>${paras(c.text)}${c.list ? `<ul class="cs-card-list">${c.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>`).join("")}</div>`,
     list: b => `<div class="cs-list">${b.title ? `<h3>${esc(b.title)}</h3>` : ""}<ul>${b.items.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`,
     figure: b => figure(b),
+    image: b => figure(b),
+    video: b => video(b),
     pair: b => `<div class="cs-pair">${b.items.map(f => figure({ ...f, size: "fill" })).join("")}</div>`,
     side: b => `<div class="cs-side-by-side${b.flip ? " flip" : ""}">${figure({ ...b.figure, size: "fill" })}<div class="cs-side-text">${b.blocks.map(render).join("")}</div></div>`,
     lotus: b => lotus(b),
@@ -122,6 +109,15 @@
     sources: b => `<div class="cs-sources"><h3>Sources</h3><ol>${b.items.map(s => `<li>${s.url ? `<a class="link" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>` : esc(s.label)}</li>`).join("")}</ol></div>`,
   };
   const render = b => (R[b.type] ? R[b.type](b) : "");
+
+  /* ---------- video: YouTube, Vimeo or an .mp4 file ---------- */
+  function video(b) {
+    const u = String(b.src || ""), yt = u.match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/), vm = u.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+    const media = yt ? `<iframe src="https://www.youtube-nocookie.com/embed/${yt[1]}" title="${esc(b.caption || "Video")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" loading="lazy"></iframe>`
+      : vm ? `<iframe src="https://player.vimeo.com/video/${vm[1]}" title="${esc(b.caption || "Video")}" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe>`
+      : u ? `<video src="${esc(u)}" controls playsinline preload="metadata"${b.loop ? " autoplay muted loop" : ""}></video>` : "";
+    return `<figure class="cs-figure cs-video is-photo size-${b.size || "wide"}"><div class="cs-figure-media">${media}</div>${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ""}</figure>`;
+  }
 
   /* ---------- the lotus: user at the centre, eight petals, notes outside ---------- */
   function lotus(b) {
@@ -346,30 +342,49 @@
     return `<figure class="cs-dg cs-pipeline"><svg class="cs-dg-svg" viewBox="0 0 1000 ${py + H + 10}" role="img" aria-label="${esc(b.alt || "")}">${defs}${s}</svg>${listed}</figure>`;
   }
 
-  /* ---------- page ---------- */
-  const facts = Object.entries(p.meta || {}).filter(([, v]) => v);
-  const intro = `
+  /* ---------- page parts (the editor uses these too) ---------- */
+  const intro = p => {
+    const facts = Object.entries(p.meta || {}).filter(([, v]) => v);
+    return `
     <section class="cs-intro">
       <h1 class="dots-xl" data-dots>${esc(p.title)}</h1>
       ${p.summary ? `<p class="cs-summary">${esc(p.summary)}</p>` : ""}
-      <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+      <ul class="tags">${(p.tags || []).map(t => `<li>${esc(t)}</li>`).join("")}</ul>
       ${facts.length ? `<dl class="cs-facts">${facts.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>` : ""}
     </section>`;
-  const cover = p.cover && p.pageCover !== false ? figure({ src: p.cover, alt: p.coverAlt || "", style: p.coverStyle || "diagram", size: "full" }) : "";
+  };
+  const cover = p => (p.cover && p.pageCover !== false ? figure({ src: p.cover, alt: p.coverAlt || "", style: p.coverStyle || "diagram", size: "full" }) : "");
+
+  // on phones the lotus zooms in to the flower; its notes are listed underneath instead
+  const narrow = matchMedia("(max-width: 720px)");
+  const fit = root => root.querySelectorAll(".cs-lotus-svg, svg[data-narrow]").forEach(svg => {
+    svg.dataset.full = svg.dataset.full || svg.getAttribute("viewBox");
+    svg.setAttribute("viewBox", narrow.matches ? (svg.dataset.narrow || "196 26 608 608") : svg.dataset.full);
+  });
+
+  window.CaseStudy = { block: render, intro, cover, fit, types: Object.keys(R), esc };
+
+  /* ---------- the page ---------- */
+  const S = window.SITE, root = document.querySelector("[data-project]");
+  if (!S || !root) return;
+  const list = S.projects.filter(p => !p.hidden);
+  const slug = new URLSearchParams(location.search).get("p") || window.PROJECT_SLUG;   // PROJECT_SLUG: lets a saved single-file preview open one project
+  const i = list.findIndex(p => p.slug === slug);
+  if (i < 0) {
+    root.innerHTML = `<section class="page-intro"><h1 class="dots-xl" data-dots>Not found</h1></section>
+      <p class="placeholder-line">That project isn’t here. <a class="link" href="work.html">See all work</a>.</p>`;
+    if (window.Dots) window.Dots.run(root);
+    return;
+  }
+  const p = list[i], next = list[(i + 1) % list.length];
+  document.title = `${p.title} · Harshwardhan Harne`;
   const body = p.body && p.body.length
     ? `<div class="cs-body">${p.body.map(render).join("")}</div>`
     : `<p class="placeholder-line">The full case study is being written.</p>`;
   const nextLink = list.length > 1 ? `<nav class="cs-next" aria-label="Next project"><span class="cs-label">Next</span><a class="cs-next-link" href="project.html?p=${encodeURIComponent(next.slug)}"><span class="dots-l" data-dots>${esc(next.title)}</span><span class="arrow" aria-hidden="true">→</span></a></nav>` : "";
 
-  root.innerHTML = intro + cover + body + nextLink;
+  root.innerHTML = intro(p) + cover(p) + body + nextLink;
   if (window.Dots) window.Dots.run(root);
-
-  // on phones the lotus zooms in to the flower; its notes are listed underneath instead
-  const narrow = matchMedia("(max-width: 720px)");
-  const fitLotus = () => root.querySelectorAll(".cs-lotus-svg, svg[data-narrow]").forEach(svg => {
-    svg.dataset.full = svg.dataset.full || svg.getAttribute("viewBox");
-    svg.setAttribute("viewBox", narrow.matches ? (svg.dataset.narrow || "196 26 608 608") : svg.dataset.full);
-  });
-  fitLotus();
-  narrow.addEventListener("change", fitLotus);
+  fit(root);
+  narrow.addEventListener("change", () => fit(root));
 })();

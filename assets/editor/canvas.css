@@ -1,0 +1,48 @@
+/* =====================================================================
+   EDITOR CANVAS: the case study drawn with the real site styles, plus
+   the outlines and toolbar the editor puts on top. Nothing here ships
+   to the live pages.
+   ===================================================================== */
+.ed-canvas main.page { padding-top: var(--s-7); }
+.ed-canvas [data-cell] { cursor: default; }
+.ed-canvas a { pointer-events: none; }
+.ed-canvas .cs-plaque p { opacity: 1 !important; transform: none !important; }   /* show the hidden lines while editing */
+
+.ed-hover, .ed-sel { position: absolute; pointer-events: none; z-index: 40; border-radius: 4px; }
+.ed-hover { outline: 1px dashed rgba(27, 26, 23, 0.35); outline-offset: 6px; }
+.ed-sel { outline: 1.5px solid var(--text); outline-offset: 8px; }
+.ed-bar {
+  position: absolute; z-index: 41; display: flex; gap: 2px; padding: 3px;
+  background: var(--text); border-radius: 10px; box-shadow: 0 6px 18px rgba(27, 26, 23, 0.18);
+  transform: translateY(-100%);
+}
+.ed-bar button {
+  all: unset; box-sizing: border-box; display: grid; place-items: center; width: 34px; height: 32px; border-radius: 7px;
+  color: var(--bg); font: 500 15px/1 var(--font); cursor: pointer;
+}
+.ed-bar button:hover, .ed-bar button:focus-visible { background: rgba(238, 237, 232, 0.16); }
+.ed-bar button[data-act="drag"] { cursor: grab; touch-action: none; }
+.ed-bar .ed-type { display: grid; place-items: center; padding: 0 10px 0 8px; color: rgba(238, 237, 232, 0.6); font: 12px/1 var(--font); letter-spacing: 0.02em; white-space: nowrap; }
+.ed-bar svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+[contenteditable] { outline: none; cursor: text; border-radius: 3px; box-shadow: 0 0 0 6px transparent; transition: box-shadow .15s ease, background-color .15s ease; }
+[contenteditable]:hover { background: rgba(27, 26, 23, 0.04); }
+[contenteditable]:focus { background: rgba(255, 255, 255, 0.55); box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.55); }
+[contenteditable]:empty::before { content: attr(data-ph); color: var(--faint); }
+
+.ed-dragging [data-cell].is-moving { opacity: 0.3; }
+.ed-dragging, .ed-dragging * { cursor: grabbing !important; user-select: none; }
+.ed-line { position: absolute; z-index: 42; height: 3px; margin-top: -1.5px; background: var(--text); border-radius: 2px; pointer-events: none; }
+.ed-line::before, .ed-line::after { content: ""; position: absolute; top: -3px; width: 9px; height: 9px; border-radius: 50%; background: var(--text); }
+.ed-line::before { left: -4px; } .ed-line::after { right: -4px; }
+.ed-chip { position: fixed; z-index: 43; pointer-events: none; padding: 6px 12px; background: var(--text); color: var(--bg); border-radius: 999px; font: 13px/1 var(--font); transform: translate(12px, -50%); }
+
+.ed-drop { outline: 2px dashed var(--text) !important; outline-offset: 8px; }
+
+.ed-empty, .ed-add {
+  all: unset; box-sizing: border-box; grid-column: 1 / -1; display: grid; place-items: center; min-height: 64px; border: 1px dashed rgba(27, 26, 23, 0.3);
+  border-radius: 12px; color: var(--muted); font: 15px/1.4 var(--font); cursor: pointer; text-align: center; padding: 16px;
+}
+.ed-add:hover, .ed-empty:hover { color: var(--text); border-color: var(--text); background: rgba(255, 255, 255, 0.35); }
+.ed-unknown { grid-column: 4 / span 8; padding: 16px; border: 1px dashed rgba(27, 26, 23, 0.3); color: var(--muted); font-size: 13px; }
+.ed-intro-hint { color: var(--muted); font-size: 12px; margin-top: var(--s-3); }
