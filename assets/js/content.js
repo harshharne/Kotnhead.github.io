@@ -1593,7 +1593,7 @@ window.SITE = {
       "summary": "An app for uplifting constitutional awareness",
       "cover": "assets/projects/neev/cover.webp",
       "coverStyle": "diagram",
-      "coverAlt": "The Neev app icon, a stepped foundation with a pillar, beside a phone showing a scenario card: a dot drawing of an arrest and two choices",
+      "coverAlt": "A phone with the Neev app icon, a stepped foundation with a pillar, in the middle of its screen",
       "pageCover": false,
       "meta": {
         "Year": "2025",
