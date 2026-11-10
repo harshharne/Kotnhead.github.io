@@ -11,7 +11,7 @@
    browser where you've opened the editor, so your own visits stay out.
    ===================================================================== */
 (() => {
-  const CODE = "";
+  const CODE = "harshwardhan";
   if (!CODE) return;
   if (location.protocol === "file:" || /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(location.hostname)) return;
   try { if (localStorage.getItem("skipgc") === "t") return; } catch {}
