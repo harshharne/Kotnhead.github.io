@@ -32,7 +32,7 @@ window.SITE = {
       "meta": {
         "Year": "2026",
         "Context": "M.Des New Media Design, NID Ahmedabad",
-        "Tools": "Python, FastAPI, random.org, Stable Diffusion (SDXL-Turbo), MediaPipe, LLM, Speech to Speech Models, one physical die",
+        "Stack": "Python, FastAPI, random.org, Stable Diffusion Turbo, MediaPipe, one physical die; planned: an LLM and a speech-to-speech voice",
         "Status": "In progress"
       },
       "body": [
@@ -41,23 +41,527 @@ window.SITE = {
           "text": "You live one life, birth to death, and a die decides most of it."
         },
         {
-          "type": "text",
-          "text": "Playing Against Chance is an interactive installation that sets predictive machines against true randomness. It is satirical throughout."
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "The question",
+              "title": "Can you play against a forecast?",
+              "text": "Predictive systems treat a life as something that can be read in advance. Real lives keep turning on things nobody forecast."
+            },
+            {
+              "kicker": "What it is",
+              "title": "One life, in 15 minutes",
+              "text": "You stand in front of a camera and live a whole life, birth to death. You throw a die for what you want; random.org, unseen, decides the rest."
+            },
+            {
+              "kicker": "Where it is",
+              "title": "A working life",
+              "text": "The full life runs: 19 events, a camera avatar, a world repainted at every event. The Bookkeeper’s voice and a story engine come next."
+            }
+          ]
+        },
+        {
+          "type": "pacsystem",
+          "title": "One event, through the system",
+          "caption": "Pick a run and step through it. Violet is chance. Dashed parts are planned.",
+          "cols": [
+            {
+              "label": "In",
+              "sub": "what goes into a life",
+              "nodes": [
+                {
+                  "id": "body",
+                  "title": "Your body",
+                  "sub": "a camera"
+                },
+                {
+                  "id": "die",
+                  "title": "Your throw",
+                  "sub": "one physical die",
+                  "chance": true
+                },
+                {
+                  "id": "rng",
+                  "title": "The unseen",
+                  "sub": "random.org, from atmospheric noise",
+                  "chance": true
+                },
+                {
+                  "id": "panel",
+                  "title": "The pace",
+                  "sub": "a control panel"
+                }
+              ]
+            },
+            {
+              "label": "Engine",
+              "sub": "Python · FastAPI",
+              "nodes": [
+                {
+                  "id": "script",
+                  "title": "Life script",
+                  "sub": "19 events, birth to death"
+                },
+                {
+                  "id": "rules",
+                  "title": "Rules of chance",
+                  "sub": "Chosen · Happens · Fluke"
+                },
+                {
+                  "id": "prompt",
+                  "title": "Prompt",
+                  "sub": "outcome + place + year + age"
+                },
+                {
+                  "id": "story",
+                  "title": "Story engine",
+                  "sub": "an LLM writes prompts and bridge lines",
+                  "planned": true
+                }
+              ]
+            },
+            {
+              "label": "Makers",
+              "sub": "in real time",
+              "nodes": [
+                {
+                  "id": "pose",
+                  "title": "Pose",
+                  "sub": "MediaPipe, in the browser"
+                },
+                {
+                  "id": "paint",
+                  "title": "World",
+                  "sub": "SD-Turbo · 512 × 512 in 0.35 s"
+                },
+                {
+                  "id": "voice",
+                  "title": "The Bookkeeper",
+                  "sub": "a speech-to-speech voice",
+                  "planned": true
+                }
+              ]
+            },
+            {
+              "label": "Stage",
+              "sub": "one screen",
+              "nodes": [
+                {
+                  "id": "screen",
+                  "title": "Avatar over world",
+                  "sub": "a baby who grows old with you"
+                },
+                {
+                  "id": "cards",
+                  "title": "Plaques and lines",
+                  "sub": "cards, text windows, bridge lines"
+                }
+              ]
+            }
+          ],
+          "edges": [
+            [
+              "body",
+              "pose"
+            ],
+            [
+              "pose",
+              "screen"
+            ],
+            [
+              "die",
+              "rules"
+            ],
+            [
+              "rng",
+              "rules"
+            ],
+            [
+              "panel",
+              "script"
+            ],
+            [
+              "script",
+              "rules"
+            ],
+            [
+              "rules",
+              "prompt"
+            ],
+            [
+              "prompt",
+              "paint"
+            ],
+            [
+              "paint",
+              "screen"
+            ],
+            [
+              "rules",
+              "cards",
+              "below"
+            ],
+            [
+              "story",
+              "prompt",
+              "planned"
+            ],
+            [
+              "voice",
+              "screen",
+              "planned"
+            ]
+          ],
+          "runs": [
+            {
+              "name": "A Chosen event",
+              "steps": [
+                {
+                  "on": [
+                    "panel",
+                    "panel>script",
+                    "script"
+                  ],
+                  "text": "Age 18. The script reaches Education, a Chosen event, at the pace set on the control panel."
+                },
+                {
+                  "on": [
+                    "script>rules",
+                    "rules",
+                    "rules>cards",
+                    "cards"
+                  ],
+                  "text": "Cards appear. You reach for one: Drop out, start a channel. Its line shows, “Four followers, all family.” Its target: exactly 1."
+                },
+                {
+                  "on": [
+                    "die",
+                    "die>rules",
+                    "rules"
+                  ],
+                  "text": "You throw the die. A 4. A miss."
+                },
+                {
+                  "on": [
+                    "rng",
+                    "rng>rules",
+                    "rules"
+                  ],
+                  "text": "On a miss, random.org allots a card for you instead. You never see the odds, only what you get."
+                },
+                {
+                  "on": [
+                    "rules>prompt",
+                    "prompt"
+                  ],
+                  "text": "The outcome, the place, the year and your age become one prompt."
+                },
+                {
+                  "on": [
+                    "prompt>paint",
+                    "paint"
+                  ],
+                  "text": "SD-Turbo paints the new world: 512 × 512 in about 0.35 seconds, so it never holds up the avatar."
+                },
+                {
+                  "on": [
+                    "body",
+                    "body>pose",
+                    "pose",
+                    "pose>screen",
+                    "screen"
+                  ],
+                  "text": "All along, the camera has been reading your body. The avatar, now 18, moves as you move."
+                },
+                {
+                  "on": [
+                    "paint>screen",
+                    "screen",
+                    "rules>cards",
+                    "cards"
+                  ],
+                  "text": "The world crossfades in behind you. The plaque settles, and a bridge line carries the years to the next event."
+                }
+              ]
+            },
+            {
+              "name": "Something happens",
+              "steps": [
+                {
+                  "on": [
+                    "script"
+                  ],
+                  "text": "The script reaches a Happens event. Three outcomes are written for it in advance: one good, one bad, one neutral."
+                },
+                {
+                  "on": [
+                    "rng",
+                    "rng>rules",
+                    "rules"
+                  ],
+                  "text": "random.org picks one. Nobody, not even the operator, chooses it."
+                },
+                {
+                  "on": [
+                    "rules>prompt",
+                    "prompt",
+                    "prompt>paint",
+                    "paint"
+                  ],
+                  "text": "It becomes a prompt, and the world is repainted around it."
+                },
+                {
+                  "on": [
+                    "paint>screen",
+                    "screen",
+                    "rules>cards",
+                    "cards"
+                  ],
+                  "text": "You only ever see the one that happened. The other two never existed for you."
+                }
+              ]
+            },
+            {
+              "name": "A fluke",
+              "steps": [
+                {
+                  "on": [
+                    "script",
+                    "script>rules",
+                    "rules"
+                  ],
+                  "text": "Age 52. A fluke: on a rainy evening you lend your umbrella to a stranger at a bus stop."
+                },
+                {
+                  "on": [
+                    "rules>cards",
+                    "cards"
+                  ],
+                  "text": "Nothing happens. The life moves on, and so do you."
+                },
+                {
+                  "on": [
+                    "script",
+                    "rng",
+                    "rng>rules",
+                    "rules"
+                  ],
+                  "text": "Age 64. The fluke comes back, and random.org decides how."
+                },
+                {
+                  "on": [
+                    "rules>prompt",
+                    "prompt>paint",
+                    "paint",
+                    "paint>screen",
+                    "screen"
+                  ],
+                  "text": "The stranger has become a minister who moves your pension file to the top of the pile."
+                }
+              ]
+            },
+            {
+              "name": "Next: the Bookkeeper",
+              "steps": [
+                {
+                  "on": [
+                    "story",
+                    "story>prompt",
+                    "prompt"
+                  ],
+                  "text": "Planned: a story engine, an LLM, writes each prompt and bridge line from the outcome, so no two lives read the same."
+                },
+                {
+                  "on": [
+                    "voice",
+                    "voice>screen",
+                    "screen"
+                  ],
+                  "text": "Planned: the Bookkeeper, who keeps the odds, speaks with you in real time through a speech-to-speech model."
+                }
+              ]
+            }
+          ]
         },
         {
           "type": "section",
-          "label": "01  Question",
-          "title": "The question"
+          "label": "01  Territory",
+          "title": "From the sublime to a die",
+          "sub": "It began far from games, in a research map of the sublime. Each station narrowed the question."
+        },
+        {
+          "type": "route",
+          "items": [
+            {
+              "kicker": "Start",
+              "title": "The sublime",
+              "text": "Kant’s mathematical sublime: scale beyond calculation, terror and exhilaration at once."
+            },
+            {
+              "kicker": "A venue",
+              "title": "Threshold",
+              "text": "A place where something shifts. Pinning the work to it gave the synthesis a constraint."
+            },
+            {
+              "kicker": "A tension",
+              "title": "Deterministic ↔ random",
+              "text": "Unpredictability and entropy on one side; AI and algorithms on the other."
+            },
+            {
+              "kicker": "A material",
+              "title": "True randomness",
+              "text": "Chance from a physical process, not a formula: a true random number generator.",
+              "chance": true
+            },
+            {
+              "kicker": "A form",
+              "title": "Games of chance",
+              "text": "Dice, slot machines, poker, a coin flip. What hooks people: rewards, incentives, high stakes."
+            },
+            {
+              "kicker": "A contest",
+              "title": "Predictive machines vs chance",
+              "text": "Our relationship with probability and prediction. What if the AI is made to struggle?"
+            },
+            {
+              "kicker": "Now",
+              "title": "A life, played",
+              "text": "The stakes became the chances in a life: birth, love, where you’re born, who you end up with."
+            }
+          ]
         },
         {
           "type": "text",
-          "text": "Predictive systems treat a life as something that can be read in advance. Real lives keep turning on things nobody forecast: a missed train, a wrong number, an umbrella lent to a stranger.\n\nI wanted a piece where you feel that gap from the inside, by playing a life against chance instead of reading about it. The satire is aimed at the system, the forecast and the dream, never at the person living the life."
+          "text": "Once randomness was the material, I mapped six directions for it before choosing one."
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "01",
+              "title": "Randomness as author",
+              "text": "What if the artist gives up control? The rules are designed; chance decides the final work."
+            },
+            {
+              "kicker": "02",
+              "title": "Randomness as instruction",
+              "text": "Chance sets the instruction, and the participant has to interpret it and act."
+            },
+            {
+              "kicker": "03",
+              "title": "Finding meaning in randomness",
+              "text": "Our habit of seeing patterns, intention and connection in events that are random."
+            },
+            {
+              "kicker": "04",
+              "title": "Randomness as the unknowable",
+              "text": "From the sublime: the concealed object, uncertainty, and the limits of knowing."
+            },
+            {
+              "kicker": "05",
+              "title": "Randomness and agency",
+              "text": "What happens to our sense of choice when chance is making the decisions?"
+            },
+            {
+              "kicker": "06",
+              "title": "Randomness and fallacies",
+              "text": "How we misread chance: believing we can predict it, change it, control it."
+            }
+          ]
+        },
+        {
+          "type": "statement",
+          "text": "A designed field where chance navigates the participants."
         },
         {
           "type": "section",
-          "label": "02  Process",
+          "label": "02  Structure",
+          "title": "Rule, chance, response",
+          "sub": "Everything else orbits three roles. I design the possibility space, chance picks the path, the player lives it."
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "Rule · me",
+              "title": "The possibility space",
+              "text": "Every event, card, outcome and line is written in advance. Nothing on screen is improvised.",
+              "list": [
+                "19 events, birth to death",
+                "Cards with throws from “2 or more” to a single number",
+                "A good, a bad and a neutral outcome for each Happens"
+              ]
+            },
+            {
+              "kicker": "Chance · random.org and the die",
+              "title": "The path",
+              "text": "Chance never invents. It only selects within what is written, the way random.org’s Jazz Scale Generator picks within rules.",
+              "list": [
+                "The die: the player’s throw for what they want",
+                "random.org: everything the player doesn’t see"
+              ],
+              "chance": true
+            },
+            {
+              "kicker": "Response · the player",
+              "title": "The life",
+              "text": "The player’s body is the life’s body. They aim, throw, miss and keep living.",
+              "list": [
+                "A body the camera follows",
+                "One physical die in hand"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "head": [
+            "Thinking with",
+            "What I took"
+          ],
+          "rows": [
+            [
+              "David Rokeby, Minimal Object",
+              "The artist builds an invisible field of possibilities; the participant finds a path through it."
+            ],
+            [
+              "Yoko Ono",
+              "The instruction can be the artwork. The participant completes it."
+            ],
+            [
+              "Samuel Beckett, Lessness",
+              "A rigorously authored structure, put in order by chance."
+            ],
+            [
+              "random.org, Jazz Scale Generator",
+              "True randomness selecting within authored rules, not generating the material."
+            ],
+            [
+              "Lauren McCarthy",
+              "What happens when a system starts to influence how people behave."
+            ],
+            [
+              "Immanuel Kant",
+              "The overwhelming scale of possibility."
+            ],
+            [
+              "Slavoj Žižek",
+              "Our desire for a hidden cause behind random events."
+            ],
+            [
+              "Isaac Asimov, Franchise",
+              "A computer picks one voter to stand for everyone."
+            ]
+          ]
+        },
+        {
+          "type": "section",
+          "label": "03  Process",
           "title": "How it evolved",
-          "sub": "Six versions. Each one kept what worked and dropped what didn’t."
+          "sub": "Six versions. Each kept what worked and dropped what didn’t."
         },
         {
           "type": "evolution",
@@ -97,7 +601,7 @@ window.SITE = {
         },
         {
           "type": "section",
-          "label": "03  Rules",
+          "label": "04  Rules",
           "title": "The rules of chance",
           "sub": "Two sources of chance run the life. The player throws one physical die, and only for choices. random.org, which the player never sees, decides everything else."
         },
@@ -161,12 +665,33 @@ window.SITE = {
           ]
         },
         {
+          "type": "bars",
+          "question": "Chance of getting the card you chose",
+          "unit": "%",
+          "total": 100,
+          "rows": [
+            [
+              "Common · 2 or more",
+              83.3
+            ],
+            [
+              "Uncommon · 4 or more",
+              50
+            ],
+            [
+              "Rare · a single number",
+              16.7
+            ]
+          ],
+          "note": "One fair die. The player never sees these numbers, only the target to throw."
+        },
+        {
           "type": "text",
           "text": "Two events break the rule. Birth gives three throws before random.org decides. Love allots nothing: a miss means you didn’t meet anyone that day.\n\nThe player sees the target to throw, never percentages or odds."
         },
         {
           "type": "section",
-          "label": "04  Excerpts",
+          "label": "05  Excerpts",
           "title": "A life, in excerpts",
           "sub": "The satire lives in the cards. Each shows a name at rest and reveals one line when the player reaches for it. The rarest cards are often the most modest wishes."
         },
@@ -229,13 +754,88 @@ window.SITE = {
         },
         {
           "type": "section",
-          "label": "05  Build",
-          "title": "The build",
-          "sub": "The player stands in front of a camera and becomes the life’s body. Everything else is painted around them as the life unfolds."
+          "label": "06  Build",
+          "title": "The stack",
+          "sub": "Four inputs, one engine, two makers, one stage. The player feels none of it: only a die, a body and a life."
         },
         {
-          "type": "pipeline",
-          "alt": "Pipeline. The camera feeds MediaPipe pose tracking, which drives the avatar. The die and random.org decide an outcome; the outcome, place, year and age become a prompt; SD-Turbo paints the world. Avatar and world meet on the screen, timed from a control panel. Planned: a story engine that writes the prompts, and a real-time voice for the Bookkeeper."
+          "type": "stats",
+          "items": [
+            {
+              "value": "19",
+              "label": "events in one life, birth to death",
+              "source": "The life script"
+            },
+            {
+              "value": "12–15 min",
+              "label": "for a whole life, every timing tunable",
+              "source": "Control panel"
+            },
+            {
+              "value": "0.35 s",
+              "label": "to paint a world, 512 × 512",
+              "source": "SD-Turbo on a MacBook Pro"
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "head": [
+            "Part",
+            "Tool",
+            "What it does",
+            "Status"
+          ],
+          "rows": [
+            [
+              "Hidden chance",
+              "random.org",
+              "True random numbers from atmospheric noise. Decides Happens events, flukes and missed throws.",
+              "Built"
+            ],
+            [
+              "Chance in hand",
+              "One physical die",
+              "The player’s throw for the card they chose.",
+              "Built"
+            ],
+            [
+              "Body",
+              "MediaPipe pose, in the browser",
+              "Tracks the player and drives an avatar that ages from a baby to old age.",
+              "Built"
+            ],
+            [
+              "World",
+              "Stable Diffusion Turbo",
+              "Paints each event’s world in one style, fast enough to repaint at every event.",
+              "Built"
+            ],
+            [
+              "Engine",
+              "Python, FastAPI",
+              "Runs the life: the script, the rules and the image model behind the screen.",
+              "Built"
+            ],
+            [
+              "Pace",
+              "Control panel",
+              "Sets every timing: crossfades, holds, bridge lines.",
+              "Built"
+            ],
+            [
+              "Story",
+              "An LLM",
+              "Writes prompts and bridge lines from each outcome.",
+              "Planned"
+            ],
+            [
+              "Voice",
+              "Speech-to-speech model",
+              "The Bookkeeper, talking with the player in real time.",
+              "Planned"
+            ]
+          ]
         },
         {
           "type": "cards",
@@ -261,7 +861,7 @@ window.SITE = {
         },
         {
           "type": "section",
-          "label": "06  Learnings",
+          "label": "07  Learnings",
           "title": "What I learned"
         },
         {
@@ -284,12 +884,12 @@ window.SITE = {
         },
         {
           "type": "section",
-          "label": "07  Next",
+          "label": "08  Next",
           "title": "What’s next"
         },
         {
           "type": "text",
-          "text": "The project is moving toward a serious game: slower, contemplative play where each choice makes you think about your own life. Still open are the Bookkeeper’s voice and how much the player steers versus drifts."
+          "text": "The project is moving toward a serious game: slower, contemplative play where each choice makes you think about your own life.\n\nStill open are the Bookkeeper’s voice, and how much the player steers versus drifts. The story engine would let every life read differently while chance stays exactly where it is: selecting, never inventing."
         }
       ],
       "coverStyle": "photo",

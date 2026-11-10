@@ -193,6 +193,8 @@ window.EdBlocks = (() => {
     bars: { name: "Bar chart" },
     split: { name: "Split bar" },
     neevplay: { name: "Neev phone (playable)" },
+    pacsystem: { name: "System, step by step" },
+    route: { name: "Route" },
     table: { name: "Table" },
     annotated: { name: "Annotated image" },
     score: { name: "Score chart" },
