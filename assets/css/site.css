@@ -180,6 +180,8 @@ main .placeholder-line + .next-project { margin-top: calc(var(--s-10) * -0.5); }
 
 .cs-cards { display: grid; gap: var(--gutter); }
 .cs-cards.cols-2 { grid-template-columns: 1fr 1fr; } .cs-cards.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cs-cards.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 900px) { .cs-cards.cols-4 { grid-template-columns: 1fr 1fr; } }
 .cs-card { padding-top: var(--s-3); border-top: 1px solid var(--rule); }
 .cs-kicker { display: block; font-size: var(--t-caption); color: var(--muted); margin-bottom: var(--s-1); }
 .cs-card-list { display: grid; gap: var(--s-1); margin-top: var(--s-1); font-size: var(--t-ui); color: var(--text-2); }
@@ -239,7 +241,7 @@ main .placeholder-line + .next-project { margin-top: calc(var(--s-10) * -0.5); }
 @media (max-width: 720px) {
   .cs-body { row-gap: var(--s-5); }
   .cs-section { margin-top: var(--s-8); }
-  .cs-stats, .cs-compare, .cs-cards.cols-2, .cs-cards.cols-3, .cs-pair { grid-template-columns: 1fr; }
+  .cs-stats, .cs-compare, .cs-cards.cols-2, .cs-cards.cols-3, .cs-cards.cols-4, .cs-pair { grid-template-columns: 1fr; }
   .cs-stat-value { font-size: var(--t-heading); }
   .cs-bars li { grid-template-columns: 1fr 3.6em; }
   .cs-bars .cs-bar { grid-column: 1 / -1; grid-row: 2; }

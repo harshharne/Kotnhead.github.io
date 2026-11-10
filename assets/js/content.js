@@ -298,16 +298,430 @@ window.SITE = {
         "Ambient Computing",
         "Interactive Hardware"
       ],
-      "year": "",
-      "summary": "",
-      "cover": "",
+      "year": "2026",
+      "summary": "Peripheral sensory objects that make your breath visible to your body, not your mind",
+      "cover": "assets/projects/soma-tiles/cover.webp",
+      "coverStyle": "diagram",
+      "coverAlt": "Five triangular tiles: linen with a breeze mark, wood with a speaker grille, clear acrylic with a ring of lights, a pale tile with a raised ripple, and terracotta with an opening at the top",
+      "pageCover": false,
       "meta": {
-        "Role": "",
-        "Team": "",
-        "Tools": "",
-        "Duration": ""
+        "Course": "Design Project 1 · Problem Solving",
+        "Brief": "Design for Human Flourishing",
+        "Form": "A breath pendant, a hub and five sensory tiles",
+        "Stage": "Built and working · lightly tested"
       },
-      "body": []
+      "body": [
+        {
+          "type": "statement",
+          "text": "Are we living in our body or just occupying it?"
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "The problem",
+              "title": "Breath held, not felt",
+              "text": "At a screen we hold or shallow our breath without noticing: screen apnea, named by Linda Stone in 2008. The body is still speaking. We have stopped listening."
+            },
+            {
+              "kicker": "The response",
+              "title": "A room that tends",
+              "text": "A clip-on pendant at the sternum notices when breathing goes shallow or held. Five tiles at the edge of the desk answer through air, sound, light, touch and smell. No screen, no score."
+            },
+            {
+              "kicker": "Where it is",
+              "title": "Built, lightly tested",
+              "text": "The pendant detects, the hub decides, the tiles respond. Whether it builds curiosity towards the body, and not just another signal to ignore, is still open."
+            }
+          ]
+        },
+        {
+          "type": "figure",
+          "src": "assets/projects/soma-tiles/tiles.webp",
+          "alt": "The five tiles in a row, each with its mark beneath: linen with breeze lines, wood with a speaker grille and a sound wave, clear acrylic with a ring of lights and a sun, a pale tile with a raised ripple and a ripple, terracotta with an opening and a curl",
+          "caption": "Breeze, sound, light, touch, smell. One form, five senses the studio ignores.",
+          "style": "diagram",
+          "size": "full"
+        },
+        {
+          "type": "section",
+          "label": "01  Question",
+          "title": "Knowing is not sensing",
+          "sub": "We know more about our bodies than any generation before us, and feel less of them."
+        },
+        {
+          "type": "text",
+          "text": "It started with a stomach. A bloating that wouldn’t go away. My mind searched, found something frightening, and built a story around it that a negative test couldn’t undo. The bloating was still there. The unease was still there.\n\nThat gap, between what my body was actually saying and the story my mind had already written over it, is where this project began."
+        },
+        {
+          "type": "compare",
+          "items": [
+            {
+              "title": "Knowing",
+              "text": "“My heart rate is elevated.” Cognitive, measurable, external. Data about the body, read from a screen. Confident, complete, leaving nothing open.",
+              "source": "Propositional"
+            },
+            {
+              "title": "Sensing",
+              "text": "“Something is off.” Bodily, felt, interior. A quality of experience before it has a name. Uncertain, alive, difficult to close.",
+              "source": "Pre-reflective"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "size": "lead",
+          "text": "The gap is between knowing and sensing. Too much knowing is happening. No data closes it, so the project isn’t education. It is restoration."
+        },
+        {
+          "type": "section",
+          "label": "02  Narrowing",
+          "title": "From everything to one breath",
+          "sub": "Mind–body disconnect shows up in food, sleep, navigation, attention and belonging. Every one of them pointed back to the same root, and none of them could be the brief."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Coupled with",
+            "Why I let it go"
+          ],
+          "rows": [
+            [
+              "Food and hunger",
+              "Adds a second wicked problem, and overlaps eating-disorder territory"
+            ],
+            [
+              "Navigation",
+              "Other populations, outdoors, different methods"
+            ],
+            [
+              "Nature",
+              "Adds a second wicked problem to the plate"
+            ],
+            [
+              "Attention",
+              "Already saturated with screen-time apps and digital wellbeing tools"
+            ],
+            [
+              "Time",
+              "Moves from interoception to chronoception"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Threading the gaps in parallel found the common node: interoceptive literacy, the body’s capacity to read its own signals. It felt like the answer. It was the territory. The common node is the context, not the brief. Then I tunnelled: three variables, every live option in each, one choice from each column."
+        },
+        {
+          "type": "table",
+          "head": [
+            "Variable",
+            "Considered",
+            "Chose"
+          ],
+          "rows": [
+            [
+              "User group",
+              "Trauma survivors, early childhood, people with chronic illness, knowledge workers",
+              "Studio-discipline students: design, engineering, architecture"
+            ],
+            [
+              "Signal",
+              "Jaw tension, shoulder tension, postural collapse, peripheral vision collapse, skin conductance, HRV dip",
+              "Screen apnea: the involuntary breath-hold under cognitive load"
+            ],
+            [
+              "Response",
+              "Behaviour change, stress reduction, productivity, wellbeing tracking",
+              "Awareness: noticing what the body already does"
+            ]
+          ]
+        },
+        {
+          "type": "statement",
+          "text": "Specificity is not the opposite of significance. It is the condition of it."
+        },
+        {
+          "type": "question",
+          "text": "How might we make screen apnea perceptible to studio-based students, without adding another demand to an already overloaded environment, so they develop curiosity towards their own body?"
+        },
+        {
+          "type": "section",
+          "label": "03  Research",
+          "title": "Listening below language",
+          "sub": "The breath-hold happens before anyone can say “I noticed that”. Surveys and interviews can’t reach it, so the research was phenomenological."
+        },
+        {
+          "type": "cards",
+          "cols": 4,
+          "items": [
+            {
+              "kicker": "Me first",
+              "title": "Somatic journaling",
+              "text": "Two weeks logging my own body at every transition before meeting anyone. It gave me a vocabulary to listen with."
+            },
+            {
+              "kicker": "6 people, 5 days",
+              "title": "Experience sampling",
+              "text": "A four-field log: time, situation, one body word, breath quality. Minimal, so the words stay their own."
+            },
+            {
+              "kicker": "45 minutes each",
+              "title": "Body maps, then interviews",
+              "text": "Mark where you feel tension, aliveness, absence or numbness. The interview followed the map, not a script."
+            },
+            {
+              "kicker": "Months of it",
+              "title": "Observation",
+              "text": "What bodies do at the start and end of work in the studio, separating what I saw from what I inferred."
+            }
+          ]
+        },
+        {
+          "type": "stats",
+          "items": [
+            {
+              "value": "2 of 90",
+              "label": "log entries where breath was noticed as a live signal, though every entry asked about it",
+              "source": "Experience sampling, 6 participants"
+            },
+            {
+              "value": "50+",
+              "label": "entries naming upper-body tension: eyes, head, shoulders",
+              "source": "Same logs"
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "Body word: scared. Breath: held.",
+          "by": "K, before a design review"
+        },
+        {
+          "type": "text",
+          "text": "She named it. She didn’t read it as breath. She read it as fear. Felt but miscategorised: that is the design problem in one sentence.\n\nThe maps agreed. The chest, the jaw and the space between the shoulders were filled on almost every one. Hands, feet and lower legs were almost always blank. The body under cognitive load contracts upward."
+        },
+        {
+          "type": "pair",
+          "items": [
+            {
+              "src": "assets/projects/soma-tiles/body-map-1.jpg",
+              "alt": "A participant’s body map in crayon: red at the head and neck, blue down the shoulders and arm, orange at the sternum labelled impending doom, maybe before a presentation",
+              "caption": "Orange at the sternum: “impending doom, maybe before a PPT”.",
+              "style": "diagram"
+            },
+            {
+              "src": "assets/projects/soma-tiles/body-map-2.jpg",
+              "alt": "A participant’s body map: an orange block over the belly, blue on the arms and legs, circles around the joints, red marks at the head and knees",
+              "caption": "Each participant drew before saying a word.",
+              "style": "diagram"
+            }
+          ]
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "Finding",
+              "title": "Visible is the wrong register",
+              "text": "The breath-hold is already felt, as dread and chest pressure. It lacks a slot that lets the sensation become readable. The design creates that slot."
+            },
+            {
+              "kicker": "Finding",
+              "title": "Three somatic languages",
+              "text": "People report through emotion, posture or inner sensation. Most use one. Five channels aren’t decoration; they let different bodies hear it."
+            },
+            {
+              "kicker": "Finding",
+              "title": "Novelty crosses the threshold",
+              "text": "If a log with a breath field can’t surface it, a calm signal won’t either. It has to stay strange enough to make you wonder what that was."
+            }
+          ]
+        },
+        {
+          "type": "section",
+          "label": "04  Decisions",
+          "title": "What survived the constraints",
+          "sub": "Research gave five constraints. Each one removes a whole class of solutions; the design is whatever survives all five."
+        },
+        {
+          "type": "list",
+          "title": "The five constraints",
+          "items": [
+            "No added cognitive demand. If it needs to be turned on, it is already wrong.",
+            "Must not externalise body knowledge. No new number to check.",
+            "Peripheral, not central. Perceptible, but never demanding.",
+            "Designed to become unnecessary. Success is when it can be put down.",
+            "Awareness before behaviour change. Noticing, not correcting."
+          ]
+        },
+        {
+          "type": "table",
+          "head": [
+            "Chose",
+            "Over",
+            "Why"
+          ],
+          "rows": [
+            [
+              "Spatial response, the wearable only senses",
+              "Wearable biofeedback; an app",
+              "A wearable that feeds back turns felt experience into a processed signal. An app adds a screen. In the room, the body doesn’t read a data point; the space changes quality."
+            ],
+            [
+              "Curiosity",
+              "Awareness",
+              "Awareness has an endpoint and sounds like knowing. Curiosity is a pull, can’t be instructed, and measures as a trajectory, not a yes or no."
+            ],
+            [
+              "Listen for the hold, whenever it happens",
+              "Fire at the transition into work",
+              "The question changed from when to fire to what to listen for."
+            ],
+            [
+              "Rhyme with the breath",
+              "Correct it",
+              "Correcting would make it a coach. The tiles rhyme with breathing without prescribing a pace."
+            ],
+            [
+              "Clip-on at the sternum",
+              "Adhesive; a free-hanging pendant",
+              "Clipping it on becomes a small ritual. A hanging pendant decouples from the chest wall."
+            ]
+          ]
+        },
+        {
+          "type": "section",
+          "label": "05  System",
+          "title": "Detect, decide, respond",
+          "sub": "A pendant listens, a hub decides, and a cluster of tiles answers at the edge of the desk."
+        },
+        {
+          "type": "figure",
+          "src": "assets/projects/soma-tiles/cluster.webp",
+          "alt": "Line drawing of many triangular tiles scattered and linked by thin lines, with a small pendant drawing at the top right labelled breathing detection",
+          "caption": "Tiles cluster, fed by the pendant.",
+          "style": "diagram",
+          "size": "wide"
+        },
+        {
+          "type": "cards",
+          "cols": 3,
+          "items": [
+            {
+              "kicker": "Detect",
+              "title": "Pendant",
+              "text": "A clip-on breath sensor at the sternum. It doesn’t measure breath rate; it detects the moment breathing shifts from regular to shallow or held.",
+              "list": [
+                "ICM-42688-P motion sensor",
+                "ESP32-C3 Mini"
+              ]
+            },
+            {
+              "kicker": "Decide",
+              "title": "Hub tile",
+              "text": "The decision brain. It takes the pendant’s trigger and chooses how the tiles answer, varying it so they never become background."
+            },
+            {
+              "kicker": "Respond",
+              "title": "Five tiles",
+              "text": "Each speaks through a sense the studio suppresses. Not loudly. Not demandingly. At the edge of awareness."
+            }
+          ]
+        },
+        {
+          "type": "table",
+          "head": [
+            "Tile",
+            "How it answers"
+          ],
+          "rows": [
+            [
+              "Breeze",
+              "A gentle movement of air the moment a hold is confirmed: a 5015 blower at 20–50% through fabric"
+            ],
+            [
+              "Sound",
+              "An asymmetric LFO: a quality of rhythm in the air, not a metronome"
+            ],
+            [
+              "Light",
+              "Pulses in a drift pattern, organic and alive"
+            ],
+            [
+              "Touch",
+              "An LRA actuator with modulated rhythm patterns, not vibration alerts"
+            ],
+            [
+              "Smell",
+              "A spray mechanism, driven by a motor"
+            ]
+          ]
+        },
+        {
+          "type": "text",
+          "text": "Two layers decide when to answer. First, verification: the sensor reads the chest’s oscillation and the wearer’s movement, so a pendant lying on a desk is never mistaken for a held breath. Then classification: when the signal flatlines, the system studies how long. Any breath inside the window resets the count. Only a sustained hold becomes a trigger."
+        },
+        {
+          "type": "section",
+          "label": "06  Tending",
+          "title": "Designed to be put down",
+          "sub": "Most technology measures success by engagement. Tending logic inverts it."
+        },
+        {
+          "type": "text",
+          "text": "The word comes from care: tending a garden, a wound, a fire. The gardener’s goal is not a garden that needs constant intervention. It is a garden that grows.\n\nThe pendant is scaffolding. The tiles are training wheels. When a person starts to notice their own breath-hold without a tile making it perceptible, the system has done its work. The right response then is not an upgrade. It is to put it down."
+        },
+        {
+          "type": "statement",
+          "text": "Success is silence. The system working itself out of a job."
+        },
+        {
+          "type": "section",
+          "label": "07  Thinking",
+          "title": "Who I thought with"
+        },
+        {
+          "type": "table",
+          "head": [
+            "Question",
+            "Thinking with"
+          ],
+          "rows": [
+            [
+              "What is the body to experience?",
+              "Merleau-Ponty, Phenomenology of Perception (1945); Varela, Thompson and Rosch, The Embodied Mind (1991)"
+            ],
+            [
+              "How do you design for felt experience?",
+              "Kristina Höök, Designing with the Body (2018); Shusterman, somaesthetics (2008)"
+            ],
+            [
+              "Is the disconnect real, in the body?",
+              "Porges, polyvagal theory (1994); Mehling et al., the MAIA framework (2012); Damasio, The Feeling of What Happens (1999)"
+            ],
+            [
+              "Can a room do this, quietly?",
+              "Ilse Crawford, Sensual Home (1997); Weiser and Brown, calm technology (1996)"
+            ],
+            [
+              "What exactly is happening at the screen?",
+              "Linda Stone, screen apnea (2008)"
+            ]
+          ]
+        },
+        {
+          "type": "section",
+          "label": "08  Open",
+          "title": "What remains open"
+        },
+        {
+          "type": "text",
+          "text": "The design is built. The tiles exist, the pendant detects, the system responds. The central claim, that making the breath-hold perceptible creates curiosity towards the body rather than one more signal to ignore, has been argued, designed for and tested in a limited way. It hasn’t been proven.\n\nThe anti-habituation logic is the most uncertain part. Familiarity is patient; whether the tiles stay noticed or become furniture, only sustained use will show. The evidence I want isn’t a sensor reading. It is language: can someone describe, at the end, a moment in their body they couldn’t put into words at the start?\n\nNext is a six-week probe with design and engineering students at NID. Beyond that: shared workspaces, and the home."
+        }
+      ]
     },
     {
       "slug": "modern-myth",
