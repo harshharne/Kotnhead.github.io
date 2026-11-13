@@ -81,6 +81,18 @@
 .tile:hover .tile-media [data-dots] { color: var(--text); }
 .tile:hover .tile-media img { transform: scale(1.015); }
 .tile:focus-visible { outline-offset: 6px; }
+
+/* covers as objects: soft corners, a hairline edge, and a layered shadow that
+   lifts a little on hover. Quiet at rest, so the work stays the loudest thing. */
+.tile-media { border-radius: 14px; isolation: isolate;
+  box-shadow: 0 0 0 1px rgba(26, 26, 25, .06), 0 1px 2px rgba(26, 26, 25, .05), 0 6px 16px -6px rgba(26, 26, 25, .10), 0 24px 48px -28px rgba(26, 26, 25, .18);
+  transition: background-color var(--dur-base) var(--ease-out), box-shadow var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+.tile-media::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, 0) 40%);   /* a faint top light, like a print under a lamp */ }
+.tile-media img { outline: none; }
+.tile:hover .tile-media { transform: translateY(-3px);
+  box-shadow: 0 0 0 1px rgba(26, 26, 25, .07), 0 2px 4px rgba(26, 26, 25, .05), 0 14px 28px -10px rgba(26, 26, 25, .16), 0 36px 64px -32px rgba(26, 26, 25, .26); }
+.tile:active .tile-media { transform: translateY(-1px); transition-duration: var(--dur-base); }
 .tile-meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); margin-top: var(--s-3); }
 .tile-title { font-size: var(--t-ui); line-height: var(--lh-ui); font-weight: var(--w-medium); }
 .tile-year { font-size: var(--t-caption); color: var(--muted); }

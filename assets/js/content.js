@@ -5,7 +5,7 @@
 
    projects  order here = order on the Work page
      slug, title, year, summary, tags [], featured, hidden,
-     cover, coverStyle "photo"|"diagram", coverAlt, pageCover false,
+     cover, coverStyle "photo"|"diagram", coverPos (focal point, e.g. "60% 50%"), coverAlt, pageCover false,
      meta { label: value }, body [ blocks ]  (block types: assets/js/project.js)
    notes     title, date "2026-11-05" (or "2024-12", or "2024"), tags [],
              related (a project slug), url (makes it a link note),
@@ -28,7 +28,7 @@ window.SITE = {
       ],
       "year": "2026",
       "summary": "An installation where you live one life, and a die decides most of it",
-      "cover": "assets/projects/playing-against-chance/cover.jpg",
+      "cover": "assets/projects/playing-against-chance/throw.jpg",
       "meta": {
         "Year": "2026",
         "Context": "M.Des New Media Design, NID Ahmedabad",
@@ -893,8 +893,9 @@ window.SITE = {
         }
       ],
       "coverStyle": "photo",
-      "coverAlt": "A small grey die in mid-air above white paper, its shadow beneath it",
-      "pageCover": false
+      "coverAlt": "A hand lets go of a die over a black tray on a wooden table, with a second tray and die beyond it",
+      "pageCover": false,
+      "coverPos": "64% 50%"
     },
     {
       "slug": "soma-tiles",
