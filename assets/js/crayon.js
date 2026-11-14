@@ -35,7 +35,7 @@
   // the wall runs from the top of the first screen down to just above "All work"
   const stop = () => {
     const a = document.querySelector("#work .section-head .action, #work .section-head");
-    return a ? a.getBoundingClientRect().top - 10 : hero.getBoundingClientRect().bottom;
+    return a ? a.getBoundingClientRect().top - 2 : hero.getBoundingClientRect().bottom;
   };
   const size = () => {
     const r = hero.getBoundingClientRect();
