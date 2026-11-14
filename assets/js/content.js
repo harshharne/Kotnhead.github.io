@@ -1342,9 +1342,9 @@ window.SITE = {
       ],
       "year": "",
       "summary": "A kinetic sculpture that tells a myth about speed, knowledge, and what we trade for them",
-      "cover": "assets/projects/modern-myth/title.jpg",
+      "cover": "assets/projects/modern-myth/elevation.jpg",
       "coverStyle": "photo",
-      "coverAlt": "A Modern Myth, written in brown serif italic on tan",
+      "coverAlt": "Blueprint front elevation of the Modern Myth sculpture: a lattice globe on a turned stand, a framed picture, a lattice framework with a spiral slide, a pendant on top, an hourglass and a pendulum, on an 840 mm base",
       "pageCover": false,
       "meta": {
         "Form": "Kinetic sculpture, seven moving objects",
