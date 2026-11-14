@@ -36,6 +36,9 @@
   display: grid; grid-template-rows: auto 1fr auto;
 }
 .hero .site-header { width: 100%; }
+/* crayon (crayon.js): a canvas under everything on the first screen; the pointer passes through it */
+.crayon { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero > .site-header, .hero > .field-stage, .hero > .hero-base { position: relative; z-index: 1; }
 .field-stage { position: relative; display: grid; align-items: center; padding-block: var(--s-6); }
 
 /* ---------- Centre piece: chance synthesises a sentence out of noise ----------
