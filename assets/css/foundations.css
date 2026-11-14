@@ -190,8 +190,11 @@ ul, ol { list-style: none; }
 .action:active { transform: translateY(1px); }
 
 /* Tag: plain caption text, separated by a middle dot when listed */
-.tags { display: flex; flex-wrap: wrap; gap: 0 var(--s-2); font-size: var(--t-caption); line-height: var(--lh-caption); color: var(--muted); }
-.tags li + li::before { content: "·"; margin-right: var(--s-2); color: var(--faint); }
+/* tags: small soft chips. Medium weight and the secondary text colour, so
+   they read clearly without competing with the title above them. */
+.tags { display: flex; flex-wrap: wrap; gap: 6px; font-size: 11.5px; line-height: 1; letter-spacing: 0.015em; font-weight: var(--w-medium); color: var(--text-2); }
+.tags li { padding: 5px 9px 5px; border-radius: 99px; background: rgba(26, 26, 25, 0.05); box-shadow: inset 0 0 0 1px rgba(26, 26, 25, 0.04);
+  transition: background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
 
 /* Media well: images sit on a surface with a hairline inner outline */
 .media { position: relative; background: var(--surface); overflow: hidden; }

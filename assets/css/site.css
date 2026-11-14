@@ -97,7 +97,8 @@
 .tile-meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-4); margin-top: var(--s-3); }
 .tile-title { font-size: var(--t-ui); line-height: var(--lh-ui); font-weight: var(--w-medium); }
 .tile-year { font-size: var(--t-caption); color: var(--muted); }
-.tile .tags { margin-top: var(--s-1); }
+.tile .tags { margin-top: var(--s-2); }
+.tile:hover .tags li { background: rgba(26, 26, 25, 0.075); color: var(--text); }
 
 /* ---------- Landing: selected work ----------
    Pairs alternate wide | narrow, narrow | wide; the narrow one drops a

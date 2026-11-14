@@ -1340,13 +1340,14 @@ window.SITE = {
         "Prototyping",
         "Innovative Storytelling"
       ],
-      "year": "",
+      "year": "2025",
       "summary": "A kinetic sculpture that tells a myth about speed, knowledge, and what we trade for them",
       "cover": "assets/projects/modern-myth/elevation.jpg",
       "coverStyle": "photo",
       "coverAlt": "Blueprint front elevation of the Modern Myth sculpture: a lattice globe on a turned stand, a framed picture, a lattice framework with a spiral slide, a pendant on top, an hourglass and a pendulum, on an 840 mm base",
       "pageCover": false,
       "meta": {
+        "Year": "2025",
         "Form": "Kinetic sculpture, seven moving objects",
         "Base": "150 × 55.5 × 15.5 cm",
         "Stage": "Narrative framework · 3D model"
