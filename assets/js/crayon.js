@@ -13,7 +13,7 @@
   const hero = document.querySelector(".hero");
   if (!hero || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
 
-  const HOLD = 9000, FADE = 3500, LIFE = HOLD + FADE;   // ms a point stays, then fades
+  const HOLD = 4500, FADE = 2500, LIFE = HOLD + FADE;   // ms a point stays, then fades
   const GAP = 700;                                       // a pause this long lifts the crayon
   const CRAYONS = ["#d4543c", "#e38d34", "#e2b832", "#5f9f4a", "#3a7fc2", "#2f9c96", "#d0618f"];
   const AVOID = [[".sy-grid", 28], [".sy-foot", 20], [".brand", 12], [".nav", 12], [".hero-base .action", 14]];
