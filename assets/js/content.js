@@ -908,8 +908,8 @@ window.SITE = {
       ],
       "year": "2026",
       "summary": "Peripheral sensory objects that make your breath visible to your body, not your mind",
-      "cover": "assets/projects/soma-tiles/symbols.webp",
-      "coverStyle": "diagram",
+      "cover": "assets/projects/soma-tiles/cover-white.jpg",
+      "coverStyle": "photo",
       "coverAlt": "The five Soma Tiles marks in a row: a sun for light, a ripple for touch, a curl for smell, a wave for sound, and lines of wind for breeze",
       "pageCover": false,
       "meta": {
