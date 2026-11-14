@@ -60,12 +60,13 @@
 @media (max-width: 720px) { .sy-foot { flex-direction: column; } }
 
 .hero-base {
-  display: flex; justify-content: flex-end; align-items: baseline;
+  display: flex; justify-content: center; align-items: baseline;
   padding-block: var(--s-5) var(--s-6);
 }
 
 /* ---------- Section head: a quiet label on the left, an action on the right ---------- */
 .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-5); padding-bottom: var(--s-6); }
+.section-head.is-action-only { justify-content: flex-end; }   /* label kept for screen readers only */
 .section-label { font-size: var(--t-ui); line-height: var(--lh-ui); font-weight: var(--w-regular); color: var(--muted); }
 
 /* ---------- Project tile: image, title, tags ----------
