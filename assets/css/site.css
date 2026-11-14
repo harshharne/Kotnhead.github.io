@@ -37,7 +37,7 @@
 }
 .hero .site-header { width: 100%; }
 /* crayon (crayon.js): a canvas under everything on the first screen; the pointer passes through it */
-.crayon { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.crayon { position: absolute; top: 0; left: 0; z-index: 0; pointer-events: none; }   /* may run below the hero, down to "All work" */
 .hero > .site-header, .hero > .field-stage, .hero > .hero-base { position: relative; z-index: 1; }
 .field-stage { position: relative; display: grid; align-items: center; padding-block: var(--s-6); }
 

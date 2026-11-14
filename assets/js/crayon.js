@@ -1,5 +1,5 @@
 /* =====================================================================
-   CRAYON. On the first screen, the cursor leaves a crayon line, the way a
+   CRAYON. On the first screen (down to "All work"), the cursor leaves a crayon line, the way a
    child draws on a wall. Only in the margins: never over the centre piece,
    the name, the menu or the link at the bottom. Each line holds for a few
    seconds, then fades from its oldest end, so the wall cleans itself.
@@ -32,9 +32,14 @@
     c.putImageData(img, 0, 0);
     return ctx.createPattern(g, "repeat");
   };
+  // the wall runs from the top of the first screen down to just above "All work"
+  const stop = () => {
+    const a = document.querySelector("#work .section-head .action, #work .section-head");
+    return a ? a.getBoundingClientRect().top - 10 : hero.getBoundingClientRect().bottom;
+  };
   const size = () => {
     const r = hero.getBoundingClientRect();
-    dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height;
+    dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = Math.max(r.height, stop() - r.top);
     cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + "px"; cv.style.height = H + "px";
     grain = makeGrain(); kick();
   };
@@ -66,13 +71,13 @@
   addEventListener("pointermove", e => {
     if (e.pointerType === "touch") return;
     const h = hero.getBoundingClientRect(), x = e.clientX - h.left, y = e.clientY - h.top, now = performance.now();
-    if (y < 0 || y > h.height) { target = null; pen = null; lift(); return; }
+    if (y < 0 || y > H) { target = null; pen = null; lift(); return; }
     if (!pen || now - lastMove > GAP) { lift(); pen = { x, y }; }
     if (now - measured > 250) { measure(); measured = now; }
     lastMove = now; target = { x, y };
     kick();
   }, { passive: true });
-  hero.addEventListener("pointerleave", () => { target = null; pen = null; lift(); });
+  document.addEventListener("pointerleave", () => { target = null; pen = null; lift(); });
   addEventListener("scroll", () => { lift(); measure(); }, { passive: true });
 
   const segment = (a, b, c, width, alpha, col, off) => {
@@ -112,7 +117,8 @@
   };
   function kick() { if (!raf) raf = requestAnimationFrame(frame); }
 
-  new ResizeObserver(() => { size(); measure(); }).observe(hero);
+  const ro = new ResizeObserver(() => { size(); measure(); });
+  ro.observe(hero); ro.observe(document.body);
   addEventListener("load", measure);
   setTimeout(measure, 1200);   // the centre piece settles its size after the font loads
   size(); measure();
