@@ -2195,9 +2195,9 @@ window.SITE = {
       ],
       "year": "2025",
       "summary": "An app for uplifting constitutional awareness",
-      "cover": "assets/projects/neev/cover.webp",
-      "coverStyle": "diagram",
-      "coverAlt": "A phone with the Neev app icon, a stepped foundation with a pillar, in the middle of its screen",
+      "cover": "assets/projects/neev/phone.jpg",
+      "coverStyle": "photo",
+      "coverAlt": "A hand holding a phone over a grey sofa; the screen is white with the Neev app icon, a stepped foundation with a pillar, in the middle",
       "pageCover": false,
       "meta": {
         "Year": "2025",
@@ -3157,7 +3157,8 @@ window.SITE = {
             }
           ]
         }
-      ]
+      ],
+      "coverPos": "50% 45%"
     }
   ],
   "notes": [
