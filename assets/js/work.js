@@ -4,6 +4,7 @@
      marked featured, in pairs that alternate wide | narrow, narrow | wide
    - [data-work="all"]       the Work page: every project, filterable by tag
    Until a project has a cover image, its title is drawn in dots.
+   A project with url (and no case study) opens that site in a new tab.
    Needs content.js and dots.js.
    ===================================================================== */
 (() => {
@@ -12,12 +13,12 @@
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   const tile = (p, shape = "") => `
-    <a class="tile ${shape}" href="project.html?p=${encodeURIComponent(p.slug)}">
+    <a class="tile ${shape}" href="${p.url ? esc(p.url) : `project.html?p=${encodeURIComponent(p.slug)}`}"${p.url ? ` target="_blank" rel="noopener"` : ""}>
       <div class="media tile-media${p.coverStyle === "diagram" ? " is-diagram" : ""}">${p.cover
         ? `<img src="${esc(p.cover)}" alt="" loading="lazy"${p.coverPos ? ` style="object-position:${esc(p.coverPos)}"` : ""}>`
         : `<span class="dots-m" data-dots>${esc(p.title)}</span>`}</div>
       <div class="tile-meta">
-        <h3 class="tile-title">${esc(p.title)}</h3>${p.year ? `<span class="tile-year">${esc(p.year)}</span>` : ""}
+        <h3 class="tile-title">${esc(p.title)}${p.url ? `<span class="tile-out" aria-label="(opens its own site)"> ↗</span>` : ""}</h3>${p.year ? `<span class="tile-year">${esc(p.year)}</span>` : ""}
       </div>
       <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
     </a>`;

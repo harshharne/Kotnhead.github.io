@@ -417,11 +417,13 @@
     return;
   }
   const p = list[i], next = list[(i + 1) % list.length];
+  // a project that lives on its own site, with no case study here, goes straight there
+  if (p.url && !(p.body && p.body.length)) { location.replace(p.url); return; }
   document.title = `${p.title} · Harshwardhan Harne`;
   const body = p.body && p.body.length
     ? `<div class="cs-body">${p.body.map(render).join("")}</div>`
     : `<p class="placeholder-line">The full case study is being written.</p>`;
-  const nextLink = list.length > 1 ? `<nav class="cs-next" aria-label="Next project"><span class="cs-label">Next</span><a class="cs-next-link" href="project.html?p=${encodeURIComponent(next.slug)}"><span class="dots-l" data-dots>${esc(next.title)}</span><span class="arrow" aria-hidden="true">→</span></a></nav>` : "";
+  const nextLink = list.length > 1 ? `<nav class="cs-next" aria-label="Next project"><span class="cs-label">Next</span><a class="cs-next-link" href="${next.url && !(next.body && next.body.length) ? esc(next.url) : `project.html?p=${encodeURIComponent(next.slug)}`}"${next.url && !(next.body && next.body.length) ? ` target="_blank" rel="noopener"` : ""}><span class="dots-l" data-dots>${esc(next.title)}</span><span class="arrow" aria-hidden="true">→</span></a></nav>` : "";
 
   root.innerHTML = intro(p) + cover(p) + body + nextLink;
   if (window.Dots) window.Dots.run(root);

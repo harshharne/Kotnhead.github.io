@@ -85,6 +85,8 @@
 .tile:hover .tile-media [data-dots] { color: var(--text); }
 .tile:hover .tile-media img { transform: scale(1.015); }
 .tile:focus-visible { outline-offset: 6px; }
+.tile-out { color: var(--muted); font-weight: var(--w-regular); transition: color var(--dur-base); }
+.tile:hover .tile-out { color: var(--text); }
 
 /* covers as objects: soft corners, a hairline edge, and a layered shadow that
    lifts a little on hover. Quiet at rest, so the work stays the loudest thing. */

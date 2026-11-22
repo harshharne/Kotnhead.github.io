@@ -3160,6 +3160,22 @@ window.SITE = {
         }
       ],
       "coverPos": "50% 45%"
+    },
+    {
+      "slug": "flick",
+      "title": "Flick",
+      "year": "2026",
+      "featured": true,
+      "url": "https://flickapp-bice.vercel.app",
+      "summary": "A cigarette pack that gives instructions instead of warnings.",
+      "tags": [
+        "Behaviour Design",
+        "Interactive Hardware",
+        "App Design"
+      ],
+      "cover": "assets/projects/flick/cover.jpg",
+      "coverStyle": "photo",
+      "coverAlt": "A black pack mid-toss, its e-paper face reading: Walk to the corner and back, with a 4:00 timer."
     }
   ],
   "notes": [
