@@ -3175,7 +3175,8 @@ window.SITE = {
       ],
       "cover": "assets/projects/flick/cover.jpg",
       "coverStyle": "photo",
-      "coverAlt": "A black pack mid-toss, its e-paper face reading: Walk to the corner and back, with a 4:00 timer."
+      "coverAlt": "The red Flick pack, front face up: Breathe. In for four. Out for six. Five times.",
+      "scene": "flick"
     }
   ],
   "notes": [

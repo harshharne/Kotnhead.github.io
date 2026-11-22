@@ -14,7 +14,7 @@
 
   const tile = (p, shape = "") => `
     <a class="tile ${shape}" href="${p.url ? esc(p.url) : `project.html?p=${encodeURIComponent(p.slug)}`}"${p.url ? ` target="_blank" rel="noopener"` : ""}>
-      <div class="media tile-media${p.coverStyle === "diagram" ? " is-diagram" : ""}">${p.cover
+      <div class="media tile-media${p.coverStyle === "diagram" ? " is-diagram" : ""}"${p.scene ? ` data-scene="${esc(p.scene)}"` : ""}>${p.cover
         ? `<img src="${esc(p.cover)}" alt="" loading="lazy"${p.coverPos ? ` style="object-position:${esc(p.coverPos)}"` : ""}>`
         : `<span class="dots-m" data-dots>${esc(p.title)}</span>`}</div>
       <div class="tile-meta">
@@ -22,6 +22,12 @@
       </div>
       <ul class="tags">${p.tags.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
     </a>`;
+
+  /* live covers: a tile whose project has scene runs window.TileScene[scene] on its media box */
+  const scenes = (root) => root.querySelectorAll("[data-scene]").forEach(m => {
+    const run = window.TileScene && window.TileScene[m.dataset.scene];
+    if (run) run(m);
+  });
 
   /* ---------- landing: selected work ---------- */
   const feat = document.querySelector('[data-work="featured"]');
@@ -33,6 +39,7 @@
       html += `<div class="work-row${flip ? " flip" : ""}">${tile(list[i], flip ? "narrow" : "wide")}${list[i + 1] ? tile(list[i + 1], flip ? "wide" : "narrow") : ""}</div>`;
     }
     feat.innerHTML = html;
+    scenes(feat);
   }
 
   /* ---------- work page: everything, filterable by tag ---------- */
@@ -47,6 +54,7 @@
     const render = () => {
       const shown = active ? projects.filter(p => p.tags.includes(active)) : projects;
       all.innerHTML = shown.map(p => tile(p)).join("");
+      scenes(all);
       if (count) count.textContent = `${shown.length} ${shown.length === 1 ? "project" : "projects"}${active ? ` tagged ${active}` : ""}`;
       if (filter) filter.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.tag === active)));
       if (window.Dots) window.Dots.run(all);
